@@ -292,24 +292,3 @@ MyStateMachine:
 ---
 
 [← ElastiCache](08-elasticache.md) | [Back to Index](../../README.md) | [Next: Containers →](10-containers.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Create doc 01-aws-sdk.md
-- [x] Create doc 02-lambda.md
-- [x] Create doc 03-api-gateway.md
-- [x] Create doc 04-dynamodb.md
-- [x] Create doc 05-s3.md
-- [x] Create doc 06-sqs-sns.md
-- [x] Create doc 07-kinesis.md
-- [x] Create doc 08-elasticache.md
-- [x] Create doc 09-step-functions.md
-- [ ] Create doc 10-containers.md
-- [ ] Create Domain 2 study guides (5 files)
-- [ ] Create Domain 3 study guides (6 files)
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

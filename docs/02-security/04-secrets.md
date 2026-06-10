@@ -230,16 +230,3 @@ def lambda_handler(event, context):
 ---
 
 [← KMS](03-kms.md) | [Back to Index](../../README.md) | [Next: Security Best Practices →](05-security-best-practices.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1 study guides (10 files)
-- [x] Domain 2: 01-iam.md, 02-cognito.md, 03-kms.md, 04-secrets.md
-- [ ] Domain 2: 05-security-best-practices.md
-- [ ] Create Domain 3 study guides (6 files)
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

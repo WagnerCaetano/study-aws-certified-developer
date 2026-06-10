@@ -102,11 +102,3 @@ python runner.py --progress
 ---
 
 [Back to Main Index](../README.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1-4 study guides (24 files)
-- [x] Exercises README
-- [ ] Create exercise runner script
-- [ ] Create exercises (35 exercises with problems, solutions, tests)
-- [ ] Create practice exams (5 exams)
-</write_to_file>

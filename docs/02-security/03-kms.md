@@ -158,19 +158,3 @@ dynamodb.create_table(
 ---
 
 [← Cognito](02-cognito.md) | [Back to Index](../../README.md) | [Next: Secrets Manager →](04-secrets.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1 study guides (10 files)
-- [x] Domain 2: 01-iam.md
-- [x] Domain 2: 02-cognito.md
-- [x] Domain 2: 03-kms.md
-- [ ] Domain 2: 04-secrets.md
-- [ ] Domain 2: 05-security-best-practices.md
-- [ ] Create Domain 3 study guides (6 files)
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

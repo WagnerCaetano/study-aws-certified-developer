@@ -181,16 +181,3 @@ Resources:
 ---
 
 [← Security Best Practices](../02-security/05-security-best-practices.md) | [Back to Index](../../README.md) | [Next: SAM →](02-sam.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1 study guides (10 files)
-- [x] Domain 2 study guides (5 files)
-- [x] Domain 3: 01-cloudformation.md
-- [ ] Domain 3: 02-sam.md, 03-cicd.md, 04-elastic-beanstalk.md, 05-codedeploy.md, 06-cdk.md
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

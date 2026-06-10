@@ -121,16 +121,3 @@ fields @timestamp, eventName, userIdentity.arn, sourceIPAddress
 ---
 
 [← CloudWatch](01-cloudwatch.md) | [Back to Index](../../README.md) | [Next: X-Ray →](03-xray.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1 study guides (10 files)
-- [x] Domain 2 study guides (5 files)
-- [x] Domain 3 study guides (5 files)
-- [x] Domain 4: 01-cloudwatch.md, 02-cloudtrail.md
-- [ ] Domain 4: 03-xray.md, 04-troubleshooting.md
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

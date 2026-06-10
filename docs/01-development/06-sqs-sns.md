@@ -488,21 +488,3 @@ lambda_client.put_function_event_invoke_config(
 ---
 
 [← S3](05-s3.md) | [Back to Index](../../README.md) | [Next: Kinesis →](07-kinesis.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Create doc 01-aws-sdk.md
-- [x] Create doc 02-lambda.md
-- [x] Create doc 03-api-gateway.md
-- [x] Create doc 04-dynamodb.md
-- [x] Create doc 05-s3.md
-- [x] Create doc 06-sqs-sns.md
-- [ ] Create remaining Domain 1 study guides (4 files)
-- [ ] Create Domain 2 study guides (5 files)
-- [ ] Create Domain 3 study guides (6 files)
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

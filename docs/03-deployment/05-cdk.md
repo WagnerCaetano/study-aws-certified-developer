@@ -135,15 +135,3 @@ cdk bootstrap
 ---
 
 [← Elastic Beanstalk](04-elastic-beanstalk.md) | [Back to Index](../../README.md) | [Next: CloudWatch →](../04-monitoring/01-cloudwatch.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1 study guides (10 files)
-- [x] Domain 2 study guides (5 files)
-- [x] Domain 3 study guides (5 files)
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>

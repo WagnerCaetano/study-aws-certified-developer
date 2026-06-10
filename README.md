@@ -177,6 +177,3 @@ python exercises/runner.py --progress
 ---
 
 *Built with ❤️ for AWS developers preparing for their certification.*
-</task_progress>
-</write_to_file>
-</thinking>

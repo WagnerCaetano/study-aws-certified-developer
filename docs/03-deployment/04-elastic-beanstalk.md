@@ -120,16 +120,3 @@ eb terminate production
 ---
 
 [← CI/CD](03-cicd.md) | [Back to Index](../../README.md) | [Next: AWS CDK →](05-cdk.md)
-</task_progress>
-- [x] Create README.md (main index)
-- [x] Domain 1 study guides (10 files)
-- [x] Domain 2 study guides (5 files)
-- [x] Domain 3: 01-cloudformation.md, 02-sam.md, 03-cicd.md, 04-elastic-beanstalk.md
-- [ ] Domain 3: 05-cdk.md
-- [ ] Create Domain 4 study guides (4 files)
-- [ ] Create quick reference cards (4 files)
-- [ ] Create exercises (55 scenarios)
-- [ ] Create exercise runner script
-- [ ] Create exercises README
-- [ ] Create practice exams (5 exams)
-</write_to_file>
