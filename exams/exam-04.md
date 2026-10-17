@@ -12,57 +12,18 @@
 
 ## Question 1
 
-**Domain:** Development
+**Domain:** Security
 
-A developer needs to implement a distributed cache that can be shared across multiple Lambda functions. Which service is BEST?
+What is the difference between a resource-based policy and an identity-based policy in AWS?
 
-- A) Amazon S3
-- B) Amazon ElastiCache (Redis)
-- C) Amazon DynamoDB DAX
-- D) Both B and C are valid options
+- A) They are the same thing
+- B) Resource-based policies are attached to resources (like S3 buckets), identity-based policies are attached to IAM principals
+- C) Resource-based policies are only for S3
+- D) Identity-based policies are more restrictive
 
 ---
 
 ## Question 2
-
-**Domain:** Security
-
-An application running on ECS needs to access DynamoDB. How should the developer configure permissions?
-
-- A) Store access keys in the container image
-- B) Use an IAM task role for the ECS task definition
-- C) Use EC2 instance profiles
-- D) Create a separate IAM user for each container
-
----
-
-## Question 3
-
-**Domain:** Development
-
-A Lambda function is experiencing cold start latency. Which approach would BEST reduce this?
-
-- A) Increase the Lambda memory allocation
-- B) Use Provisioned Concurrency
-- C) Add more code to the Lambda function
-- D) Decrease the timeout setting
-
----
-
-## Question 4
-
-**Domain:** Monitoring
-
-What is the default sampling rate for X-Ray when no sampling rules are configured?
-
-- A) 0% (no traces)
-- B) 100% (all requests)
-- C) 1 request per second, then 5% of additional requests
-- D) 10% of all requests
-
----
-
-## Question 5
 
 **Domain:** Security
 
@@ -75,16 +36,55 @@ Which AWS service provides automatic rotation of database credentials?
 
 ---
 
-## Question 6
+## Question 3
 
 **Domain:** Development
 
-What is the maximum execution timeout for an AWS Lambda function?
+An application needs strongly consistent reads from DynamoDB. What must the developer do?
 
-- A) 30 seconds
-- B) 5 minutes
-- C) 15 minutes
-- D) 1 hour
+- A) Enable DynamoDB Streams
+- B) Set ConsistentRead=True on GetItem or Query (not available on GSIs)
+- C) Use only Scan operations
+- D) Switch the table to eventual consistency mode
+
+---
+
+## Question 4
+
+**Domain:** Monitoring
+
+DynamoDB Contributor Insights helps identify:
+
+- A) The most accessed keys / items causing hot partitions or heavy traffic
+- B) KMS key rotation status only
+- C) S3 storage class transitions
+- D) Cognito password policies
+
+---
+
+## Question 5
+
+**Domain:** Monitoring
+
+What is CloudWatch Logs subscription filter used for?
+
+- A) Encrypting log groups with SSE-S3 only
+- B) Streaming matching log events in near real time to Kinesis, Firehose, or Lambda
+- C) Deleting empty log streams
+- D) Replacing metric filters entirely with no metrics
+
+---
+
+## Question 6
+
+**Domain:** Security
+
+A developer needs client-side encryption of objects before uploading to S3. Which approach meets this requirement?
+
+- A) Rely only on SSE-S3 after upload
+- B) Encrypt data in the application (e.g., AWS Encryption SDK) before PutObject
+- C) Enable Transfer Acceleration
+- D) Use only CloudWatch Logs encryption
 
 ---
 
@@ -92,445 +92,55 @@ What is the maximum execution timeout for an AWS Lambda function?
 
 **Domain:** Development
 
-A developer wants to ensure exactly-once processing of SQS messages in a Lambda function. What should they do?
+A developer needs temporary access for a client to upload a file directly to S3. What is the BEST approach?
 
-- A) Set the visibility timeout to infinity
-- B) Use a FIFO queue with content-based deduplication
-- C) Delete the message after processing and use idempotent processing logic
-- D) Use SNS instead of SQS
+- A) Make the bucket public with PutObject allowed
+- B) Generate a pre-signed URL with PutObject permission and a short expiry
+- C) Embed IAM user credentials in the mobile app
+- D) Use CloudFront signed cookies for uploads only
 
 ---
 
 ## Question 8
 
-**Domain:** Deployment
+**Domain:** Monitoring
 
-A developer wants to test a SAM application locally before deploying. Which command runs the Lambda function locally?
+A developer needs structured logging from Lambda for easier querying. What is a recommended practice?
 
-- A) sam validate
-- B) sam local invoke
-- C) sam local start-api
-- D) sam build
+- A) Print unstructured free-form strings only
+- B) Emit JSON log lines with consistent fields (level, requestId, message) to stdout
+- C) Disable CloudWatch Logs
+- D) Log only to local disk
 
 ---
 
 ## Question 9
 
-**Domain:** Deployment
+**Domain:** Development
 
-A developer wants to deploy infrastructure as code for a serverless application. Which tool is PURPOSE-BUILT for this?
+Which Elasticache engine feature is commonly used for atomic counters and distributed locks?
 
-- A) AWS CloudFormation directly
-- B) AWS SAM (Serverless Application Model)
-- C) AWS Elastic Beanstalk
-- D) AWS OpsWorks
+- A) Redis INCR / SET with NX and expiry
+- B) Memcached flush_all only
+- C) DynamoDB PutItem
+- D) S3 object lock
 
 ---
 
 ## Question 10
 
-**Domain:** Development
+**Domain:** Deployment
 
-When building a DynamoDB table for an e-commerce application, which access pattern requires a Global Secondary Index (GSI)?
+SAM Globals section is used to:
 
-- A) Get order by orderId (partition key)
-- B) Get all orders for a customer sorted by date (composite key)
-- C) Get all orders with status 'PENDING' regardless of customer
-- D) Delete an order by orderId
+- A) Define account-wide SCPs
+- B) Set default properties shared by serverless resources (Runtime, Timeout, Environment, etc.)
+- C) Replace Parameters
+- D) Configure Organization trails
 
 ---
 
 ## Question 11
-
-**Domain:** Security
-
-A developer needs to grant a Lambda function access to read objects from an S3 bucket. What is the MOST secure approach?
-
-- A) Embed AWS access keys in the Lambda function code
-- B) Create an IAM role with S3 read permissions and attach it to the Lambda function
-- C) Make the S3 bucket public
-- D) Use bucket policies that allow anonymous access
-
----
-
-## Question 12
-
-**Domain:** Development
-
-Which DynamoDB operation is MOST efficient for retrieving a single item by its primary key?
-
-- A) Scan with a filter expression
-- B) Query with the partition key
-- C) GetItem with the full primary key
-- D) BatchGetItem with a single item
-
----
-
-## Question 13
-
-**Domain:** Deployment
-
-What is the purpose of 'sam build' command?
-
-- A) To deploy the SAM application
-- B) To create a deployment artifact by building Lambda functions and copying dependencies
-- C) To delete a SAM application
-- D) To test the SAM application in production
-
----
-
-## Question 14
-
-**Domain:** Monitoring
-
-An API Gateway REST API is returning 429 errors. What should the developer do?
-
-- A) Increase the Lambda function memory
-- B) Enable throttling with appropriate rate and burst limits
-- C) Switch to a regional API endpoint
-- D) Disable authentication
-
----
-
-## Question 15
-
-**Domain:** Monitoring
-
-Which service should be used to monitor API Gateway REST API access logs?
-
-- A) CloudTrail only
-- B) CloudWatch Logs with API Gateway access logging enabled
-- C) S3 only
-- D) X-Ray only
-
----
-
-## Question 16
-
-**Domain:** Monitoring
-
-Which CloudWatch metric is used to monitor Lambda function invocations?
-
-- A) CPUUtilization
-- B) Invocations
-- C) RequestCount
-- D) Throughput
-
----
-
-## Question 17
-
-**Domain:** Security
-
-Which feature of S3 prevents accidental deletion of objects?
-
-- A) Server-side encryption
-- B) Versioning with MFA Delete
-- C) CORS configuration
-- D) Transfer Acceleration
-
----
-
-## Question 18
-
-**Domain:** Security
-
-A developer needs to encrypt data larger than 4KB using KMS. What is the recommended approach?
-
-- A) Call KMS Encrypt repeatedly for each 4KB chunk
-- B) Use envelope encryption with GenerateDataKey
-- C) Use KMS with a larger key size
-- D) Compress the data to under 4KB
-
----
-
-## Question 19
-
-**Domain:** Development
-
-A developer is building a REST API with API Gateway. The backend Lambda function returns a response, but the client receives a 502 error. What is the MOST likely cause?
-
-- A) The API Gateway does not have CORS enabled
-- B) The Lambda function is not returning a properly formatted proxy response with statusCode, headers, and body
-- C) The API Gateway is missing request validation
-- D) The client is sending the wrong Content-Type header
-
----
-
-## Question 20
-
-**Domain:** Development
-
-What is the maximum payload size for an SQS message?
-
-- A) 64 KB
-- B) 128 KB
-- C) 256 KB
-- D) 1 MB
-
----
-
-## Question 21
-
-**Domain:** Monitoring
-
-A developer needs to search through Lambda function logs to find errors. Which tool provides the MOST powerful query capabilities?
-
-- A) CloudWatch Logs console with simple text search
-- B) CloudWatch Logs Insights
-- C) AWS X-Ray
-- D) CloudTrail
-
----
-
-## Question 22
-
-**Domain:** Development
-
-A developer needs to store user session data with sub-millisecond latency. Which AWS service should be used?
-
-- A) Amazon S3
-- B) Amazon DynamoDB
-- C) Amazon ElastiCache (Redis)
-- D) Amazon RDS
-
----
-
-## Question 23
-
-**Domain:** Monitoring
-
-A Lambda function in a VPC cannot reach the internet. What is missing?
-
-- A) More memory
-- B) A NAT Gateway in the VPC's public subnet
-- C) A larger timeout
-- D) An Elastic IP address
-
----
-
-## Question 24
-
-**Domain:** Monitoring
-
-A developer needs to be notified when a DynamoDB table's consumed capacity exceeds 80%. What should they configure?
-
-- A) A CloudWatch Alarm on the ConsumedReadCapacityUnits or ConsumedWriteCapacityUnits metric
-- B) A DynamoDB Stream
-- C) A CloudTrail trail
-- D) An X-Ray sampling rule
-
----
-
-## Question 25
-
-**Domain:** Monitoring
-
-A developer wants to use X-Ray to trace a Lambda function. What is the MINIMUM configuration needed?
-
-- A) Install the X-Ray SDK and modify all code
-- B) Enable X-Ray active tracing on the Lambda function configuration
-- C) Create a CloudTrail trail
-- D) Enable VPC Flow Logs
-
----
-
-## Question 26
-
-**Domain:** Deployment
-
-A developer needs to deploy a containerized application without managing any infrastructure. Which combination should they use?
-
-- A) EC2 + Docker
-- B) ECS with Fargate launch type
-- C) ECS with EC2 launch type
-- D) Elastic Beanstalk with Docker platform
-
----
-
-## Question 27
-
-**Domain:** Security
-
-A developer needs to implement API key-based authentication for a public API. Which approach should they use?
-
-- A) IAM authentication on API Gateway
-- B) API Gateway with API keys and usage plans
-- C) Cognito User Pools
-- D) Lambda authorizer that validates API keys
-
----
-
-## Question 28
-
-**Domain:** Deployment
-
-Which CloudFormation intrinsic function is used to reference a resource's attribute?
-
-- A) Fn::Ref
-- B) Fn::GetAtt
-- C) Fn::Sub
-- D) Fn::Join
-
----
-
-## Question 29
-
-**Domain:** Security
-
-A developer needs to securely store a database connection string for a Lambda function. The string needs to be rotated every 30 days. Which solution is BEST?
-
-- A) Store it in a Lambda environment variable
-- B) Store it in AWS Secrets Manager with automatic rotation
-- C) Store it in S3 with server-side encryption
-- D) Store it in AWS Systems Manager Parameter Store as a String type
-
----
-
-## Question 30
-
-**Domain:** Deployment
-
-In CloudFormation, what happens when a stack update fails?
-
-- A) The stack is deleted
-- B) Changes are automatically rolled back to the previous known good state
-- C) The stack is paused for manual review
-- D) Only the failed resource is deleted
-
----
-
-## Question 31
-
-**Domain:** Security
-
-A developer wants to use Cognito to allow unauthenticated guest access to AWS resources. Which Cognito feature supports this?
-
-- A) Cognito User Pools
-- B) Cognito Identity Pools (Federated Identities)
-- C) Cognito Sync
-- D) Cognito user groups
-
----
-
-## Question 32
-
-**Domain:** Monitoring
-
-What is the default retention period for CloudWatch Logs?
-
-- A) 7 days
-- B) 30 days
-- C) Never expire (infinite retention)
-- D) 90 days
-
----
-
-## Question 33
-
-**Domain:** Development
-
-Which S3 storage class is MOST cost-effective for data that is accessed once a quarter?
-
-- A) S3 Standard
-- B) S3 Intelligent-Tiering
-- C) S3 Standard-IA (Infrequent Access)
-- D) S3 Glacier Deep Archive
-
----
-
-## Question 34
-
-**Domain:** Development
-
-A developer needs to implement a state machine that branches based on output from a Lambda function. Which Step Functions state type should be used?
-
-- A) Task
-- B) Pass
-- C) Choice
-- D) Wait
-
----
-
-## Question 35
-
-**Domain:** Deployment
-
-Which Elastic Beanstalk deployment policy is the FASTEST but causes temporary unavailability?
-
-- A) All at once
-- B) Rolling
-- C) Rolling with additional batch
-- D) Immutable
-
----
-
-## Question 36
-
-**Domain:** Monitoring
-
-A developer receives a 'ProvisionedThroughputExceededException' from DynamoDB. What is the BEST immediate action?
-
-- A) Delete the table and recreate it
-- B) Switch to on-demand capacity mode or increase provisioned capacity
-- C) Enable encryption
-- D) Add a global secondary index
-
----
-
-## Question 37
-
-**Domain:** Development
-
-A developer needs to deploy a Lambda function that processes SQS messages. The function must read messages in batches of 10 and delete them after processing. Which of the following is the BEST approach?
-
-- A) Poll SQS manually using a scheduled Lambda function every minute
-- B) Configure SQS as an event source for the Lambda function with a batch size of 10
-- C) Use SNS to fan out messages to individual Lambda invocations
-- D) Use Kinesis Data Streams to buffer messages before processing
-
----
-
-## Question 38
-
-**Domain:** Development
-
-A Lambda function needs to access a DynamoDB table. What is the MOST secure way to grant permissions?
-
-- A) Hardcode AWS access keys in the Lambda function code
-- B) Store access keys in Lambda environment variables
-- C) Attach an IAM execution role with least-privilege DynamoDB permissions to the Lambda function
-- D) Use the AWS account root user credentials
-
----
-
-## Question 39
-
-**Domain:** Security
-
-A developer needs to encrypt an S3 bucket with a customer-managed KMS key. Which bucket property should they configure?
-
-- A) Bucket policy
-- B) Default encryption with SSE-KMS
-- C) CORS configuration
-- D) Object lock
-
----
-
-## Question 40
-
-**Domain:** Security
-
-A company wants to implement user authentication for a web application without managing passwords. Which service should they use?
-
-- A) AWS IAM
-- B) Amazon Cognito
-- C) AWS Secrets Manager
-- D) AWS WAF
-
----
-
-## Question 41
 
 **Domain:** Deployment
 
@@ -543,46 +153,137 @@ A developer is using AWS CDK to define infrastructure. Which command generates t
 
 ---
 
-## Question 42
-
-**Domain:** Monitoring
-
-What is the purpose of a CloudWatch metric filter?
-
-- A) To filter which logs are sent to S3
-- B) To extract metric values from log events
-- C) To delete old log entries
-- D) To encrypt log data
-
----
-
-## Question 43
-
-**Domain:** Development
-
-A developer needs to implement a fanout pattern where one event triggers multiple downstream services. Which combination of services is BEST?
-
-- A) SQS + Lambda
-- B) SNS + SQS + Lambda
-- C) Kinesis + Lambda
-- D) API Gateway + Lambda
-
----
-
-## Question 44
+## Question 12
 
 **Domain:** Deployment
 
-A developer wants to share a Lambda function's ARN from one CloudFormation stack to another. How can they do this?
+CodeDeploy blue/green for ECS typically involves:
 
-- A) Use Fn::Ref in the second stack
-- B) Use Outputs with Export in the first stack and Fn::ImportValue in the second stack
-- C) Hardcode the ARN in both stacks
-- D) Use SSM parameters automatically
+- A) Replacing Lambda layers only
+- B) Shifting traffic from an original task set to a replacement task set using a load balancer listener
+- C) Deleting the VPC
+- D) Disabling CloudWatch
 
 ---
 
-## Question 45
+## Question 13
+
+**Domain:** Monitoring
+
+Which tool helps determine if CloudFormation stack resources have drifted from the template?
+
+- A) CloudFormation drift detection
+- B) Amazon Polly
+- C) AWS Snowball
+- D) Amazon Rekognition
+
+---
+
+## Question 14
+
+**Domain:** Deployment
+
+CDK bootstrapping (cdk bootstrap) is required to:
+
+- A) Install Node.js
+- B) Provision staging resources (S3, IAM roles, ECR) in an environment for CDK deployments
+- C) Create Cognito Identity Pools
+- D) Enable MFA on the root user
+
+---
+
+## Question 15
+
+**Domain:** Security
+
+A company wants to implement user authentication for a web application without managing passwords. Which service should they use?
+
+- A) AWS IAM
+- B) Amazon Cognito
+- C) AWS Secrets Manager
+- D) AWS WAF
+
+---
+
+## Question 16
+
+**Domain:** Deployment
+
+A developer wants to deploy infrastructure as code for a serverless application. Which tool is PURPOSE-BUILT for this?
+
+- A) AWS CloudFormation directly
+- B) AWS SAM (Serverless Application Model)
+- C) AWS Elastic Beanstalk
+- D) AWS OpsWorks
+
+---
+
+## Question 17
+
+**Domain:** Monitoring
+
+To capture failed asynchronous Lambda invocations for later analysis, configure:
+
+- A) A dead-letter queue (SQS/SNS) or Lambda destination on failure
+- B) Only S3 Transfer Acceleration
+- C) Cognito hosted UI
+- D) CloudFront signed URLs
+
+---
+
+## Question 18
+
+**Domain:** Development
+
+What does DynamoDB TTL (Time to Live) do?
+
+- A) Automatically encrypts items after a timestamp
+- B) Deletes expired items near a Unix epoch attribute without consuming write capacity for the delete in the usual way
+- C) Creates a GSI for time-based queries
+- D) Extends item retention beyond 365 days
+
+---
+
+## Question 19
+
+**Domain:** Deployment
+
+Which CloudFormation intrinsic function is used to reference a resource's attribute?
+
+- A) Fn::Ref
+- B) Fn::GetAtt
+- C) Fn::Sub
+- D) Fn::Join
+
+---
+
+## Question 20
+
+**Domain:** Deployment
+
+What does AWS::Serverless::Function Events property typically configure?
+
+- A) Only CloudTrail events
+- B) Event sources such as API Gateway, S3, SQS, SNS, DynamoDB Streams, Schedule, etc.
+- C) VPC Flow Logs exclusively
+- D) KMS key rotation schedule
+
+---
+
+## Question 21
+
+**Domain:** Security
+
+A developer needs to securely store a database connection string for a Lambda function. The string needs to be rotated every 30 days. Which solution is BEST?
+
+- A) Store it in a Lambda environment variable
+- B) Store it in AWS Secrets Manager with automatic rotation
+- C) Store it in S3 with server-side encryption
+- D) Store it in AWS Systems Manager Parameter Store as a String type
+
+---
+
+## Question 22
 
 **Domain:** Security
 
@@ -595,150 +296,59 @@ What is the principle of least privilege in AWS IAM?
 
 ---
 
-## Question 46
-
-**Domain:** Monitoring
-
-Which AWS service provides a record of API calls made in an AWS account?
-
-- A) CloudWatch Logs
-- B) CloudTrail
-- C) X-Ray
-- D) VPC Flow Logs
-
----
-
-## Question 47
+## Question 23
 
 **Domain:** Security
 
-A developer wants to add a web-based login page to their application using Cognito. Which Cognito feature provides hosted UI authentication?
+Which S3 encryption option requires the customer to provide an encryption key with each request?
 
-- A) Cognito Identity Pools
-- B) Cognito User Pool hosted UI (App Integration)
-- C) Cognito Sync
-- D) Cognito user migration Lambda trigger
-
----
-
-## Question 48
-
-**Domain:** Deployment
-
-A developer wants to perform blue/green deployments for a Lambda function. Which deployment preference should they use in SAM?
-
-- A) AllAtOnce
-- B) Canary10Percent5Minutes
-- C) Linear10PercentEvery3Minutes
-- D) Rolling
+- A) SSE-S3
+- B) SSE-KMS
+- C) SSE-C
+- D) Client-side encryption with Encryption SDK managed keys stored only in KMS
 
 ---
 
-## Question 49
-
-**Domain:** Security
-
-A developer wants to use temporary credentials to access AWS resources from an on-premises application. Which STS API should they call?
-
-- A) GetSessionToken
-- B) AssumeRole
-- C) GetFederationToken
-- D) DecodeAuthorizationMessage
-
----
-
-## Question 50
-
-**Domain:** Monitoring
-
-A developer wants to create a CloudWatch alarm that triggers when Lambda error rate exceeds 5%. Which metric should they use?
-
-- A) Invocations
-- B) Duration
-- C) Errors (with math expression Errors/Invocations)
-- D) Throttles
-
----
-
-## Question 51
+## Question 24
 
 **Domain:** Development
 
-A developer needs to process a large CSV file uploaded to S3. The file is 5GB. What is the MOST efficient approach?
+A developer needs optimistic concurrency control when updating a DynamoDB item. Which feature should they use?
 
-- A) Download the entire file in a Lambda function and process it
-- B) Use S3 Select to query only the needed data
-- C) Copy the file to EBS and process it with EC2
-- D) Use S3 Transfer Acceleration
+- A) DynamoDB Streams
+- B) Conditional expressions (e.g., attribute_exists / version attribute checks)
+- C) Scan with ConsistentRead
+- D) On-demand capacity mode
 
 ---
 
-## Question 52
+## Question 25
 
 **Domain:** Security
 
-Which API Gateway authorization type uses a Lambda function to validate tokens?
+An application running on ECS needs to access DynamoDB. How should the developer configure permissions?
 
-- A) NONE
-- B) AWS_IAM
-- C) COGNITO_USER_POOLS
-- D) CUSTOM (Lambda Authorizer)
-
----
-
-## Question 53
-
-**Domain:** Deployment
-
-Which AWS CDK construct level provides the highest abstraction with pre-configured patterns?
-
-- A) L1 constructs (CfnXxx)
-- B) L2 constructs
-- C) L3 constructs (Patterns)
-- D) L0 constructs
+- A) Store access keys in the container image
+- B) Use an IAM task role for the ECS task definition
+- C) Use EC2 instance profiles
+- D) Create a separate IAM user for each container
 
 ---
 
-## Question 54
-
-**Domain:** Deployment
-
-Which AWS SAM CLI command validates a SAM template locally?
-
-- A) sam validate
-- B) sam deploy --no-execute-changeset
-- C) sam build --validate
-- D) sam local invoke
-
----
-
-## Question 55
+## Question 26
 
 **Domain:** Development
 
-A Step Functions workflow needs to wait for human approval before proceeding. Which state type should be used?
+A Lambda function must share initialization cost across many invocations. Where should expensive SDK clients be created?
 
-- A) Task state
-- B) Choice state
-- C) Wait state with a callback pattern
-- D) Succeed state
-
----
-
-## Question 56
-
-**Domain:** Deployment
-
-What is the purpose of a buildspec.yml file in AWS CodeBuild?
-
-- A) It defines the infrastructure resources
-- B) It contains the build commands and settings for CodeBuild
-- C) It configures CodePipeline stages
-- D) It defines IAM policies for the build
+- A) Inside the handler on every invocation
+- B) Outside the handler (global/module scope) so warm containers reuse them
+- C) In a separate Lambda Layer that runs at invoke time
+- D) In the API Gateway request mapping template
 
 ---
 
-## Question 57
+## Question 27
 
 **Domain:** Deployment
 
@@ -751,33 +361,46 @@ In a CI/CD pipeline using AWS CodePipeline, which stage is responsible for trans
 
 ---
 
-## Question 58
+## Question 28
 
-**Domain:** Development
+**Domain:** Monitoring
 
-Which S3 feature allows a Lambda function to be triggered when a new object is created?
+Which Lambda metric indicates how long the initialization (cold start) phase took?
 
-- A) S3 Lifecycle policies
-- B) S3 Event Notifications
-- C) S3 Select
-- D) S3 Versioning
-
----
-
-## Question 59
-
-**Domain:** Development
-
-Which DynamoDB feature captures item-level modifications in a table?
-
-- A) Global Secondary Index
-- B) DynamoDB Streams
-- C) Time-to-Live (TTL)
-- D) Point-in-Time Recovery
+- A) Init Duration (reported in REPORT / Performance metrics where available)
+- B) ApproximateNumberOfMessagesVisible
+- C) BucketSizeBytes
+- D) HealthyHostCount
 
 ---
 
-## Question 60
+## Question 29
+
+**Domain:** Security
+
+A developer wants to add a web-based login page to their application using Cognito. Which Cognito feature provides hosted UI authentication?
+
+- A) Cognito Identity Pools
+- B) Cognito User Pool hosted UI (App Integration)
+- C) Cognito Sync
+- D) Cognito user migration Lambda trigger
+
+---
+
+## Question 30
+
+**Domain:** Development
+
+A Lambda function is experiencing cold start latency. Which approach would BEST reduce this?
+
+- A) Increase the Lambda memory allocation
+- B) Use Provisioned Concurrency
+- C) Add more code to the Lambda function
+- D) Decrease the timeout setting
+
+---
+
+## Question 31
 
 **Domain:** Deployment
 
@@ -790,46 +413,280 @@ What does the 'Transform: AWS::Serverless-2016-10-31' section in a CloudFormatio
 
 ---
 
-## Question 61
-
-**Domain:** Deployment
-
-Which Elastic Beanstalk deployment strategy has the HIGHEST availability but takes the longest?
-
-- A) All at once
-- B) Rolling
-- C) Rolling with additional batch
-- D) Immutable
-
----
-
-## Question 62
-
-**Domain:** Monitoring
-
-Which X-Ray feature allows searching traces by custom attributes?
-
-- A) Annotations
-- B) Metadata
-- C) Segments
-- D) Sampling rules
-
----
-
-## Question 63
+## Question 32
 
 **Domain:** Development
 
-A developer needs to implement real-time streaming data processing with ordering guarantees. Which service should they use?
+A Kinesis Data Streams consumer must process records in order per shard and checkpoint progress. Which approach is MOST appropriate with Lambda?
 
-- A) Amazon SQS Standard queue
-- B) Amazon SNS
-- C) Amazon Kinesis Data Streams
-- D) Amazon MQ
+- A) Use SQS Standard as the event source instead
+- B) Configure Kinesis as a Lambda event source; Lambda manages shard iterators and checkpoints via event source mapping
+- C) Poll Kinesis from EC2 without checkpoints
+- D) Publish each record to SNS for unordered fan-out
 
 ---
 
-## Question 64
+## Question 33
+
+**Domain:** Monitoring
+
+An X-Ray service map shows a node with a high fault rate. Faults typically indicate:
+
+- A) Successful 2xx responses
+- B) 5xx errors / server-side failures in the traced service
+- C) Only cold starts
+- D) Missing IAM roles exclusively
+
+---
+
+## Question 34
+
+**Domain:** Development
+
+What is the maximum payload size for an SQS message?
+
+- A) 64 KB
+- B) 128 KB
+- C) 256 KB
+- D) 1 MB
+
+---
+
+## Question 35
+
+**Domain:** Development
+
+Which API Gateway integration type passes the entire request/response to/from Lambda without mapping templates?
+
+- A) AWS integration
+- B) HTTP integration
+- C) Lambda proxy (AWS_PROXY) integration
+- D) MOCK integration
+
+---
+
+## Question 36
+
+**Domain:** Monitoring
+
+A developer enables X-Ray tracing on API Gateway. What additional step helps end-to-end traces into Lambda?
+
+- A) Disable Lambda logs
+- B) Enable active tracing on the Lambda function as well
+- C) Delete the API stage
+- D) Use only MOCK integrations
+
+---
+
+## Question 37
+
+**Domain:** Deployment
+
+CloudFormation stack policies are used to:
+
+- A) Encrypt all parameters automatically
+- B) Prevent updates to critical resources during stack updates unless explicitly allowed
+- C) Replace IAM identity policies
+- D) Speed up rollbacks only
+
+---
+
+## Question 38
+
+**Domain:** Security
+
+Which feature of S3 prevents accidental deletion of objects?
+
+- A) Server-side encryption
+- B) Versioning with MFA Delete
+- C) CORS configuration
+- D) Transfer Acceleration
+
+---
+
+## Question 39
+
+**Domain:** Monitoring
+
+API Gateway integration latency vs latency metrics differ how?
+
+- A) They are identical always
+- B) Latency includes overhead end-to-end at API Gateway; IntegrationLatency measures time spent calling the backend
+- C) IntegrationLatency includes client network only
+- D) Neither is published to CloudWatch
+
+---
+
+## Question 40
+
+**Domain:** Security
+
+A developer needs to implement API key-based authentication for a public API. Which approach should they use?
+
+- A) IAM authentication on API Gateway
+- B) API Gateway with API keys and usage plans
+- C) Cognito User Pools
+- D) Lambda authorizer that validates API keys
+
+---
+
+## Question 41
+
+**Domain:** Development
+
+Which S3 feature allows a Lambda function to be triggered when a new object is created?
+
+- A) S3 Lifecycle policies
+- B) S3 Event Notifications
+- C) S3 Select
+- D) S3 Versioning
+
+---
+
+## Question 42
+
+**Domain:** Security
+
+A developer needs to grant a Lambda function access to read objects from an S3 bucket. What is the MOST secure approach?
+
+- A) Embed AWS access keys in the Lambda function code
+- B) Create an IAM role with S3 read permissions and attach it to the Lambda function
+- C) Make the S3 bucket public
+- D) Use bucket policies that allow anonymous access
+
+---
+
+## Question 43
+
+**Domain:** Deployment
+
+CodeBuild project environment variables marked as Parameter Store or Secrets Manager type are useful to:
+
+- A) Commit secrets into buildspec.yml in plaintext
+- B) Inject secrets at build time without hardcoding them in the repository
+- C) Disable CloudWatch Logs for builds
+- D) Skip the install phase
+
+---
+
+## Question 44
+
+**Domain:** Development
+
+Which DynamoDB operation should be avoided for large tables when filtering by a non-key attribute without an index?
+
+- A) GetItem
+- B) Query
+- C) Scan
+- D) BatchWriteItem
+
+---
+
+## Question 45
+
+**Domain:** Monitoring
+
+Which CloudWatch Logs Insights query finds the 10 slowest Lambda durations from REPORT lines?
+
+- A) DELETE FROM log_group
+- B) A query filtering REPORT lines, parsing Duration, sorting desc, and limiting 10
+- C) SELECT * FROM dynamodb
+- D) Only the X-Ray console can do this
+
+---
+
+## Question 46
+
+**Domain:** Security
+
+A developer wants to use temporary credentials to access AWS resources from an on-premises application. Which STS API should they call?
+
+- A) GetSessionToken
+- B) AssumeRole
+- C) GetFederationToken
+- D) DecodeAuthorizationMessage
+
+---
+
+## Question 47
+
+**Domain:** Development
+
+When should a developer choose an SQS FIFO queue over a Standard queue?
+
+- A) When maximum throughput is the only priority
+- B) When message order and exactly-once processing within a message group are required
+- C) When messages must be larger than 256 KB
+- D) When messages must be retained for more than 14 days
+
+---
+
+## Question 48
+
+**Domain:** Deployment
+
+Which CloudFormation feature imports existing resources into a stack?
+
+- A) StackSets only
+- B) Resource import (create change set with Import)
+- C) Drift detection exclusively
+- D) Termination protection
+
+---
+
+## Question 49
+
+**Domain:** Development
+
+A developer wants EventBridge to route only OrderCreated events with amount > 1000 to a Lambda target. What should they configure?
+
+- A) An SNS filter policy on the Lambda subscription
+- B) An EventBridge rule with an event pattern matching source/detail-type and a content filter on amount
+- C) An SQS visibility timeout of 1000 seconds
+- D) API Gateway request validation only
+
+---
+
+## Question 50
+
+**Domain:** Deployment
+
+A developer wants to perform blue/green deployments for a Lambda function. Which deployment preference should they use in SAM?
+
+- A) AllAtOnce
+- B) Canary10Percent5Minutes
+- C) Linear10PercentEvery3Minutes
+- D) Rolling
+
+---
+
+## Question 51
+
+**Domain:** Development
+
+A Step Functions Map state is used to process a list of items. What does it do?
+
+- A) Waits for human approval
+- B) Runs a set of steps for each item in an array, optionally in parallel with MaxConcurrency
+- C) Replaces Choice states entirely
+- D) Only works with Express workflows
+
+---
+
+## Question 52
+
+**Domain:** Security
+
+A developer needs to encrypt data larger than 4KB using KMS. What is the recommended approach?
+
+- A) Call KMS Encrypt repeatedly for each 4KB chunk
+- B) Use envelope encryption with GenerateDataKey
+- C) Use KMS with a larger key size
+- D) Compress the data to under 4KB
+
+---
+
+## Question 53
 
 **Domain:** Security
 
@@ -842,16 +699,159 @@ A developer is reviewing an IAM policy and finds: 'Action': 's3:*', 'Resource': 
 
 ---
 
-## Question 65
+## Question 54
+
+**Domain:** Development
+
+When building a DynamoDB table for an e-commerce application, which access pattern requires a Global Secondary Index (GSI)?
+
+- A) Get order by orderId (partition key)
+- B) Get all orders for a customer sorted by date (composite key)
+- C) Get all orders with status 'PENDING' regardless of customer
+- D) Delete an order by orderId
+
+---
+
+## Question 55
+
+**Domain:** Development
+
+What is the purpose of an SQS dead-letter queue (DLQ)?
+
+- A) To store messages permanently for archival
+- B) To receive messages that fail processing after a configured maximum receive count
+- C) To replace the visibility timeout mechanism
+- D) To fan out messages to multiple consumers
+
+---
+
+## Question 56
 
 **Domain:** Security
 
-What is the difference between a resource-based policy and an identity-based policy in AWS?
+SSM Parameter Store hierarchical paths (e.g., /myapp/prod/db) are useful primarily to:
 
-- A) They are the same thing
-- B) Resource-based policies are attached to resources (like S3 buckets), identity-based policies are attached to IAM principals
-- C) Resource-based policies are only for S3
-- D) Identity-based policies are more restrictive
+- A) Automatically rotate passwords
+- B) Organize parameters and apply IAM path-based access control with GetParametersByPath
+- C) Replace KMS entirely
+- D) Create VPC endpoints
+
+---
+
+## Question 57
+
+**Domain:** Security
+
+Which KMS operation should be used to encrypt data that is larger than 4KB?
+
+- A) kms:Encrypt
+- B) kms:GenerateDataKey
+- C) kms:GenerateRandom
+- D) kms:ReEncrypt
+
+---
+
+## Question 58
+
+**Domain:** Monitoring
+
+CloudWatch alarm state INSUFFICIENT_DATA usually means:
+
+- A) The alarm threshold was breached
+- B) Not enough data points are available yet for the configured evaluation period
+- C) The AWS account was suspended
+- D) X-Ray tracing is mandatory
+
+---
+
+## Question 59
+
+**Domain:** Deployment
+
+Which Elastic Beanstalk deployment strategy has the HIGHEST availability but takes the longest?
+
+- A) All at once
+- B) Rolling
+- C) Rolling with additional batch
+- D) Immutable
+
+---
+
+## Question 60
+
+**Domain:** Development
+
+A developer needs to implement a state machine that branches based on output from a Lambda function. Which Step Functions state type should be used?
+
+- A) Task
+- B) Pass
+- C) Choice
+- D) Wait
+
+---
+
+## Question 61
+
+**Domain:** Deployment
+
+Which artifact store does CodePipeline commonly use between stages?
+
+- A) Amazon S3
+- B) Amazon Neptune
+- C) Amazon MQ
+- D) Amazon Lex
+
+---
+
+## Question 62
+
+**Domain:** Development
+
+A developer needs to process a large CSV file uploaded to S3. The file is 5GB. What is the MOST efficient approach?
+
+- A) Download the entire file in a Lambda function and process it
+- B) Use S3 Select to query only the needed data
+- C) Copy the file to EBS and process it with EC2
+- D) Use S3 Transfer Acceleration
+
+---
+
+## Question 63
+
+**Domain:** Development
+
+A developer needs to implement a distributed cache that can be shared across multiple Lambda functions. Which service is BEST?
+
+- A) Amazon S3
+- B) Amazon ElastiCache (Redis)
+- C) Amazon DynamoDB DAX
+- D) Both B and C are valid options
+
+---
+
+## Question 64
+
+**Domain:** Deployment
+
+Elastic Beanstalk .ebextensions configuration files are used to:
+
+- A) Define Lambda layers
+- B) Customize environment configuration (packages, files, option settings) during deployment
+- C) Create Cognito User Pools
+- D) Configure X-Ray sampling only
+
+---
+
+## Question 65
+
+**Domain:** Development
+
+Which DynamoDB feature captures item-level modifications in a table?
+
+- A) Global Secondary Index
+- B) DynamoDB Streams
+- C) Time-to-Live (TTL)
+- D) Point-in-Time Recovery
 
 ---
 
@@ -862,393 +862,393 @@ What is the difference between a resource-based policy and an identity-based pol
 
 ---
 
-## Question 1 — Answer: D
+## Question 1 — Answer: B
 
-**Explanation:** Both ElastiCache Redis and DynamoDB DAX can serve as distributed caches. Redis is more general-purpose; DAX is specifically for DynamoDB. Both can be shared across Lambda functions.
+**Explanation:** Resource-based policies are attached to resources and define who can access them. Identity-based policies are attached to IAM users, groups, or roles and define what they can access.
 
 ---
 
 ## Question 2 — Answer: B
 
-**Explanation:** ECS task roles (taskRoleArn) provide temporary credentials to containers, following the same IAM role pattern as Lambda execution roles.
+**Explanation:** AWS Secrets Manager provides automatic credential rotation for databases and other services. Parameter Store can store secrets but doesn't provide automatic rotation.
 
 ---
 
 ## Question 3 — Answer: B
 
-**Explanation:** Provisioned Concurrency pre-initializes Lambda execution environments, eliminating cold starts. Increasing memory can help but doesn't eliminate cold starts entirely.
+**Explanation:** Strongly consistent reads are requested via ConsistentRead=True on GetItem/Query against the base table. GSIs support only eventually consistent reads.
 
 ---
 
-## Question 4 — Answer: C
+## Question 4 — Answer: A
 
-**Explanation:** The default X-Ray sampling rule traces the first request each second, then 5% of additional requests. This ensures some traces while controlling costs.
+**Explanation:** Contributor Insights surfaces frequently accessed keys and traffic patterns useful for diagnosing hot partitions.
 
 ---
 
 ## Question 5 — Answer: B
 
-**Explanation:** AWS Secrets Manager provides automatic credential rotation for databases and other services. Parameter Store can store secrets but doesn't provide automatic rotation.
+**Explanation:** Subscription filters deliver real-time log events matching a filter pattern to streaming or Lambda destinations for processing.
 
 ---
 
-## Question 6 — Answer: C
+## Question 6 — Answer: B
 
-**Explanation:** The maximum Lambda function timeout is 15 minutes (900 seconds). For longer-running tasks, use Step Functions, ECS, or other compute services.
+**Explanation:** Client-side encryption encrypts data before it leaves the client. Server-side encryption (SSE-*) encrypts after S3 receives the object.
 
 ---
 
-## Question 7 — Answer: C
+## Question 7 — Answer: B
 
-**Explanation:** SQS provides at-least-once delivery. For exactly-once semantics, delete messages after successful processing and design idempotent processing logic that can handle duplicate deliveries safely.
+**Explanation:** Pre-signed URLs grant time-limited permission to perform a specific S3 action without exposing long-lived credentials or opening the bucket publicly.
 
 ---
 
 ## Question 8 — Answer: B
 
-**Explanation:** sam local invoke runs a Lambda function locally using Docker. sam local start-api also works but starts a local API server instead of invoking directly.
+**Explanation:** JSON structured logs work well with Logs Insights filters/parses and make correlation by requestId easier.
 
 ---
 
-## Question 9 — Answer: B
+## Question 9 — Answer: A
 
-**Explanation:** AWS SAM is a framework for building serverless applications, providing simplified syntax for Lambda functions, API Gateway, and DynamoDB tables.
+**Explanation:** Redis supports atomic operations such as INCR and SET NX EX, which are commonly used for counters and simple distributed locks.
 
 ---
 
-## Question 10 — Answer: C
+## Question 10 — Answer: B
 
-**Explanation:** Querying by a non-key attribute (status) requires a GSI. The primary table can only be efficiently queried by the partition key and sort key.
+**Explanation:** Globals reduce duplication by applying common Function/Api/SimpleTable properties across SAM resources.
 
 ---
 
 ## Question 11 — Answer: B
 
-**Explanation:** IAM roles provide temporary credentials automatically rotated by AWS. This is the secure best practice — never embed credentials in code or make resources public unnecessarily.
+**Explanation:** cdk synth (synthesize) generates the CloudFormation template from CDK code without deploying. This is useful for reviewing changes before deployment.
 
 ---
 
-## Question 12 — Answer: C
+## Question 12 — Answer: B
 
-**Explanation:** GetItem is the most efficient for retrieving a single item by its full primary key (partition + sort key if applicable). It uses minimal RCUs compared to Scan or Query.
+**Explanation:** ECS blue/green with CodeDeploy creates a new task set and shifts load balancer traffic gradually or all at once to the replacement set.
 
 ---
 
-## Question 13 — Answer: B
+## Question 13 — Answer: A
 
-**Explanation:** sam build processes the SAM template, builds Lambda functions (installing dependencies), and creates deployment artifacts in the .aws-sam directory.
+**Explanation:** Drift detection compares actual resource configuration with the stack template and reports differences.
 
 ---
 
 ## Question 14 — Answer: B
 
-**Explanation:** 429 Too Many Requests indicates throttling. Configure appropriate rate limits and burst limits, or request a limit increase from AWS.
+**Explanation:** Bootstrap creates the CDK toolkit stack with assets bucket and deployment roles needed for cdk deploy in that account/region.
 
 ---
 
 ## Question 15 — Answer: B
 
-**Explanation:** API Gateway can be configured to send access logs to CloudWatch Logs, providing detailed request/response information for monitoring and troubleshooting.
+**Explanation:** Amazon Cognito provides user authentication, sign-up, and sign-in functionality for web and mobile applications, supporting social identity providers and SAML.
 
 ---
 
 ## Question 16 — Answer: B
 
-**Explanation:** CloudWatch publishes Lambda metrics including Invocations, Duration, Errors, Throttles, and ConcurrentExecutions for monitoring Lambda functions.
+**Explanation:** AWS SAM is a framework for building serverless applications, providing simplified syntax for Lambda functions, API Gateway, and DynamoDB tables.
 
 ---
 
-## Question 17 — Answer: B
+## Question 17 — Answer: A
 
-**Explanation:** MFA Delete requires multi-factor authentication to delete objects or disable versioning, providing strong protection against accidental or malicious deletion.
+**Explanation:** Async Lambda failures can be routed to a DLQ or on-failure destination (SQS, SNS, EventBridge, another Lambda) for inspection and retry.
 
 ---
 
 ## Question 18 — Answer: B
 
-**Explanation:** Envelope encryption uses KMS to generate a data key, which is then used to encrypt the actual data locally. This avoids KMS size limits and reduces KMS API calls.
+**Explanation:** TTL marks items for expiration based on a numeric epoch attribute; DynamoDB deletes them asynchronously. Ideal for sessions and temporary data.
 
 ---
 
 ## Question 19 — Answer: B
 
-**Explanation:** A 502 Bad Gateway error from API Gateway with Lambda proxy integration typically means the Lambda function returned an invalid response format. The response must include statusCode, headers, and body as a properly formatted JSON object.
+**Explanation:** Fn::GetAtt returns the value of an attribute from a resource in the template, such as a Lambda function's Arn or an S3 bucket's DomainName.
 
 ---
 
-## Question 20 — Answer: C
+## Question 20 — Answer: B
 
-**Explanation:** SQS messages have a maximum size of 256 KB. For larger messages, use S3 to store the payload and pass a reference via SQS.
+**Explanation:** SAM Events attach triggers to Lambda (HTTP APIs, queues, topics, schedules, and more) with simplified syntax.
 
 ---
 
 ## Question 21 — Answer: B
 
-**Explanation:** CloudWatch Logs Insights provides a powerful query language for searching and analyzing log data, including filtering, aggregation, and sorting.
-
----
-
-## Question 22 — Answer: C
-
-**Explanation:** ElastiCache (Redis) provides sub-millisecond latency for in-memory data operations, making it ideal for session data. DynamoDB provides single-digit millisecond latency.
-
----
-
-## Question 23 — Answer: B
-
-**Explanation:** Lambda functions in a VPC need a NAT Gateway in a public subnet to reach the internet. The function should be placed in a private subnet with a route to the NAT.
-
----
-
-## Question 24 — Answer: A
-
-**Explanation:** CloudWatch Alarms can monitor DynamoDB capacity metrics (ConsumedReadCapacityUnits, ConsumedWriteCapacityUnits) and trigger notifications via SNS.
-
----
-
-## Question 25 — Answer: B
-
-**Explanation:** For Lambda, simply enabling active tracing in the function configuration provides basic tracing. The X-Ray SDK is needed only for custom subsegments and annotations.
-
----
-
-## Question 26 — Answer: B
-
-**Explanation:** ECS with Fargate eliminates infrastructure management for containers. Fargate provisions and manages the underlying compute resources automatically.
-
----
-
-## Question 27 — Answer: B
-
-**Explanation:** API Gateway provides built-in API key management with usage plans for throttling and quotas. This is designed for public APIs where you want to track and control usage.
-
----
-
-## Question 28 — Answer: B
-
-**Explanation:** Fn::GetAtt returns the value of an attribute from a resource in the template, such as a Lambda function's Arn or an S3 bucket's DomainName.
-
----
-
-## Question 29 — Answer: B
-
 **Explanation:** Secrets Manager supports automatic rotation (configurable schedule), which meets the 30-day rotation requirement. Parameter Store SecureString can encrypt but doesn't provide automatic rotation.
 
 ---
 
-## Question 30 — Answer: B
-
-**Explanation:** CloudFormation automatically rolls back changes on failure by default. All changes made during the update are reverted to the previous stable state.
-
----
-
-## Question 31 — Answer: B
-
-**Explanation:** Cognito Identity Pools support both authenticated and unauthenticated (guest) identities, providing temporary AWS credentials for accessing resources.
-
----
-
-## Question 32 — Answer: C
-
-**Explanation:** By default, CloudWatch Logs never expire. You can configure a retention period between 1 day and 10 years, or keep data indefinitely.
-
----
-
-## Question 33 — Answer: C
-
-**Explanation:** S3 Standard-IA is designed for data accessed less frequently but requires rapid access when needed (quarterly access). Glacier Deep Archive is for annual access. Intelligent-Tiering has a monitoring cost.
-
----
-
-## Question 34 — Answer: C
-
-**Explanation:** The Choice state evaluates conditions and branches to different states based on the input, similar to an if-else statement.
-
----
-
-## Question 35 — Answer: A
-
-**Explanation:** All at once deploys to all instances simultaneously, making it the fastest but causes temporary downtime during the deployment.
-
----
-
-## Question 36 — Answer: B
-
-**Explanation:** This error means you've exceeded your provisioned throughput. Either switch to on-demand mode (PAY_PER_REQUEST) or increase RCUs/WCUs.
-
----
-
-## Question 37 — Answer: B
-
-**Explanation:** SQS can be configured as an event source for Lambda. Lambda automatically polls the queue and invokes the function with batches of messages (up to 10,000). Successfully processed messages are automatically deleted.
-
----
-
-## Question 38 — Answer: C
-
-**Explanation:** IAM execution roles are the secure way to grant Lambda permissions. Never hardcode credentials or use root accounts. Environment variables for secrets should use Secrets Manager instead.
-
----
-
-## Question 39 — Answer: B
-
-**Explanation:** S3 default encryption with SSE-KMS uses a customer-managed CMK. This automatically encrypts all new objects with the specified KMS key.
-
----
-
-## Question 40 — Answer: B
-
-**Explanation:** Amazon Cognito provides user authentication, sign-up, and sign-in functionality for web and mobile applications, supporting social identity providers and SAML.
-
----
-
-## Question 41 — Answer: B
-
-**Explanation:** cdk synth (synthesize) generates the CloudFormation template from CDK code without deploying. This is useful for reviewing changes before deployment.
-
----
-
-## Question 42 — Answer: B
-
-**Explanation:** Metric filters define patterns to match in log events and turn them into CloudWatch numeric metrics, enabling alarms and dashboards based on log data.
-
----
-
-## Question 43 — Answer: B
-
-**Explanation:** SNS + SQS + Lambda enables the fanout pattern: publish to SNS topic, which fans out to multiple SQS queues (one per service), and Lambda processes each queue independently.
-
----
-
-## Question 44 — Answer: B
-
-**Explanation:** CloudFormation cross-stack references use Outputs with Export Name in one stack and Fn::ImportValue in another to share values between stacks.
-
----
-
-## Question 45 — Answer: B
+## Question 22 — Answer: B
 
 **Explanation:** Least privilege means granting only the permissions needed for a specific task. This reduces the blast radius of compromised credentials.
 
 ---
 
-## Question 46 — Answer: B
+## Question 23 — Answer: C
 
-**Explanation:** CloudTrail records API calls made in your AWS account, including who made the call, when, and what resources were affected.
-
----
-
-## Question 47 — Answer: B
-
-**Explanation:** Cognito User Pools provide a hosted UI for authentication that can be customized, supporting social providers and SAML, without building your own login page.
+**Explanation:** SSE-C (customer-provided keys) requires the client to supply the encryption key on each upload/download request.
 
 ---
 
-## Question 48 — Answer: B
+## Question 24 — Answer: B
 
-**Explanation:** Canary10Percent5Minutes shifts 10% of traffic to the new version, waits 5 minutes, then shifts the remaining 90%. This is a blue/green deployment strategy for Lambda.
-
----
-
-## Question 49 — Answer: B
-
-**Explanation:** AssumeRole returns temporary credentials (access key, secret key, session token) that can be used to access AWS resources. It's the standard way to obtain temporary credentials for cross-account or on-premises access.
+**Explanation:** Conditional writes (ConditionExpression) implement optimistic locking by failing updates when expected attribute values (like a version) do not match.
 
 ---
 
-## Question 50 — Answer: C
+## Question 25 — Answer: B
 
-**Explanation:** To calculate error rate, use a metric math expression dividing the Errors metric by the Invocations metric, then set the alarm threshold at 0.05 (5%).
-
----
-
-## Question 51 — Answer: B
-
-**Explanation:** S3 Select allows you to retrieve only the needed data from a CSV file using SQL expressions, reducing data transfer and processing time significantly.
+**Explanation:** ECS task roles (taskRoleArn) provide temporary credentials to containers, following the same IAM role pattern as Lambda execution roles.
 
 ---
 
-## Question 52 — Answer: D
+## Question 26 — Answer: B
 
-**Explanation:** Lambda Authorizers (formerly Custom Authorizers) use a Lambda function to evaluate the authorization token and return an IAM policy.
-
----
-
-## Question 53 — Answer: C
-
-**Explanation:** L3 constructs (also called patterns) provide the highest level of abstraction with pre-configured defaults and best practices, like aws-apigateway.LambdaRestApi.
+**Explanation:** Code outside the handler runs during cold start and is reused for warm invocations. Initialize clients once at module scope for better performance.
 
 ---
 
-## Question 54 — Answer: A
-
-**Explanation:** sam validate checks the SAM template for syntax and structural errors. It can validate both SAM and CloudFormation templates.
-
----
-
-## Question 55 — Answer: C
-
-**Explanation:** The Wait state with callback pattern (.waitForTaskToken) allows Step Functions to pause execution until an external process (like human approval) completes by returning the task token.
-
----
-
-## Question 56 — Answer: B
-
-**Explanation:** The buildspec.yml defines the build phases (install, pre_build, build, post_build), environment variables, and artifacts for CodeBuild.
-
----
-
-## Question 57 — Answer: B
+## Question 27 — Answer: B
 
 **Explanation:** The Build stage (typically using CodeBuild) compiles source code, runs tests, and produces deployable artifacts like Lambda deployment packages or Docker images.
 
 ---
 
-## Question 58 — Answer: B
+## Question 28 — Answer: A
+
+**Explanation:** Cold start initialization time appears as Init Duration in Lambda REPORT logs and related performance metrics.
+
+---
+
+## Question 29 — Answer: B
+
+**Explanation:** Cognito User Pools provide a hosted UI for authentication that can be customized, supporting social providers and SAML, without building your own login page.
+
+---
+
+## Question 30 — Answer: B
+
+**Explanation:** Provisioned Concurrency pre-initializes Lambda execution environments, eliminating cold starts. Increasing memory can help but doesn't eliminate cold starts entirely.
+
+---
+
+## Question 31 — Answer: B
+
+**Explanation:** The Transform section tells CloudFormation to use the SAM transform, which converts SAM-specific resource types into standard CloudFormation resources.
+
+---
+
+## Question 32 — Answer: B
+
+**Explanation:** Lambda event source mappings for Kinesis poll shards, invoke with batches, and checkpoint on success, preserving per-shard order.
+
+---
+
+## Question 33 — Answer: B
+
+**Explanation:** In X-Ray, faults generally correspond to 5xx errors. Errors often map to 4xx client issues; throttles are rate-limit related.
+
+---
+
+## Question 34 — Answer: C
+
+**Explanation:** SQS messages have a maximum size of 256 KB. For larger messages, use S3 to store the payload and pass a reference via SQS.
+
+---
+
+## Question 35 — Answer: C
+
+**Explanation:** Lambda proxy integration forwards the full request to Lambda and expects a structured response (statusCode, headers, body), simplifying API wiring.
+
+---
+
+## Question 36 — Answer: B
+
+**Explanation:** For complete traces through API Gateway into Lambda, enable X-Ray on both the API stage and the Lambda function.
+
+---
+
+## Question 37 — Answer: B
+
+**Explanation:** Stack policies protect resources from unintended updates (e.g., databases) during CloudFormation stack operations.
+
+---
+
+## Question 38 — Answer: B
+
+**Explanation:** MFA Delete requires multi-factor authentication to delete objects or disable versioning, providing strong protection against accidental or malicious deletion.
+
+---
+
+## Question 39 — Answer: B
+
+**Explanation:** IntegrationLatency is backend call time; Latency is overall API Gateway request time including gateway overhead.
+
+---
+
+## Question 40 — Answer: B
+
+**Explanation:** API Gateway provides built-in API key management with usage plans for throttling and quotas. This is designed for public APIs where you want to track and control usage.
+
+---
+
+## Question 41 — Answer: B
 
 **Explanation:** S3 Event Notifications can trigger Lambda, SNS, or SQS when events like object creation, deletion, or restoration occur in a bucket.
 
 ---
 
-## Question 59 — Answer: B
+## Question 42 — Answer: B
 
-**Explanation:** DynamoDB Streams captures a time-ordered sequence of item-level changes (insert, update, delete) in a table, enabling event-driven processing.
-
----
-
-## Question 60 — Answer: B
-
-**Explanation:** The Transform section tells CloudFormation to use the SAM transform, which converts SAM-specific resource types (like AWS::Serverless::Function) into standard CloudFormation resources.
+**Explanation:** IAM roles provide temporary credentials automatically rotated by AWS. This is the secure best practice — never embed credentials in code or make resources public unnecessarily.
 
 ---
 
-## Question 61 — Answer: D
+## Question 43 — Answer: B
 
-**Explanation:** Immutable deployment creates a completely new set of instances, ensuring full availability during deployment. It's the safest but slowest and most expensive option.
-
----
-
-## Question 62 — Answer: A
-
-**Explanation:** Annotations are key-value pairs indexed by X-Ray, allowing you to search and filter traces. Metadata is not indexed and cannot be searched.
+**Explanation:** CodeBuild can resolve environment variables from SSM or Secrets Manager at runtime so secrets stay out of source control.
 
 ---
 
-## Question 63 — Answer: C
+## Question 44 — Answer: C
 
-**Explanation:** Kinesis Data Streams provides ordering of records within shards, enabling real-time processing with ordering guarantees. SQS FIFO also provides ordering but is not designed for streaming.
+**Explanation:** Scan reads every item and is inefficient/expensive on large tables. Prefer Query with a proper key design or GSI for non-key access patterns.
 
 ---
 
-## Question 64 — Answer: B
+## Question 45 — Answer: B
+
+**Explanation:** Logs Insights can filter REPORT log lines, parse fields like Duration, sort, and limit results for performance analysis.
+
+---
+
+## Question 46 — Answer: B
+
+**Explanation:** AssumeRole returns temporary credentials (access key, secret key, session token) that can be used to access AWS resources. It's the standard way to obtain temporary credentials for cross-account or on-premises access.
+
+---
+
+## Question 47 — Answer: B
+
+**Explanation:** FIFO queues provide ordering and exactly-once processing within a message group ID. Standard queues prioritize higher throughput with at-least-once delivery.
+
+---
+
+## Question 48 — Answer: B
+
+**Explanation:** Resource import brings existing resources under CloudFormation management using an import change set and a template that matches current configuration.
+
+---
+
+## Question 49 — Answer: B
+
+**Explanation:** EventBridge rules use event patterns (and content filtering) to match specific events and fields before invoking targets like Lambda.
+
+---
+
+## Question 50 — Answer: B
+
+**Explanation:** Canary10Percent5Minutes shifts 10% of traffic to the new version, waits 5 minutes, then shifts the remaining 90%. This is a blue/green-style canary for Lambda.
+
+---
+
+## Question 51 — Answer: B
+
+**Explanation:** Map iterates over an array and runs a processor state machine for each element, with optional concurrency limits for fan-out processing.
+
+---
+
+## Question 52 — Answer: B
+
+**Explanation:** Envelope encryption uses KMS to generate a data key, which is then used to encrypt the actual data locally. This avoids KMS size limits and reduces KMS API calls.
+
+---
+
+## Question 53 — Answer: B
 
 **Explanation:** Using wildcards for both Action and Resource violates least privilege. The policy grants all S3 actions on all buckets, which is overly permissive.
 
 ---
 
+## Question 54 — Answer: C
+
+**Explanation:** Querying by a non-key attribute (status) requires a GSI. The primary table can only be efficiently queried by the partition key and sort key.
+
+---
+
+## Question 55 — Answer: B
+
+**Explanation:** A DLQ captures messages that repeatedly fail processing (after maxReceiveCount), enabling inspection, alerting, and reprocessing without blocking the main queue.
+
+---
+
+## Question 56 — Answer: B
+
+**Explanation:** Paths organize configuration and allow IAM policies to grant access to parameter hierarchies via path prefixes and GetParametersByPath.
+
+---
+
+## Question 57 — Answer: B
+
+**Explanation:** GenerateDataKey returns a plaintext data key and an encrypted copy. Use the plaintext key to encrypt data locally (envelope encryption), then store the encrypted key with the data.
+
+---
+
+## Question 58 — Answer: B
+
+**Explanation:** INSUFFICIENT_DATA occurs when CloudWatch lacks enough datapoints to evaluate the alarm (e.g., new metric or sparse activity).
+
+---
+
+## Question 59 — Answer: D
+
+**Explanation:** Immutable deployment creates a completely new set of instances, ensuring full availability during deployment. It's the safest but slowest and most expensive option.
+
+---
+
+## Question 60 — Answer: C
+
+**Explanation:** The Choice state evaluates conditions and branches to different states based on the input, similar to an if-else statement.
+
+---
+
+## Question 61 — Answer: A
+
+**Explanation:** CodePipeline uses an S3 artifact bucket to pass build/deploy artifacts between pipeline stages.
+
+---
+
+## Question 62 — Answer: B
+
+**Explanation:** S3 Select allows you to retrieve only the needed data from a CSV file using SQL expressions, reducing data transfer and processing time significantly.
+
+---
+
+## Question 63 — Answer: D
+
+**Explanation:** Both ElastiCache Redis and DynamoDB DAX can serve as distributed caches. Redis is more general-purpose; DAX is specifically for DynamoDB.
+
+---
+
+## Question 64 — Answer: B
+
+**Explanation:** .ebextensions YAML/JSON files customize Beanstalk environments—software, files, commands, and option settings.
+
+---
+
 ## Question 65 — Answer: B
 
-**Explanation:** Resource-based policies are attached to resources and define who can access them. Identity-based policies are attached to IAM users, groups, or roles and define what they can access.
+**Explanation:** DynamoDB Streams captures a time-ordered sequence of item-level changes (insert, update, delete) in a table, enabling event-driven processing.
 
 ---
 

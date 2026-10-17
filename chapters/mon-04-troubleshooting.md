@@ -1,6 +1,6 @@
 # Troubleshooting & Optimization
 
-> **Domain 4: Monitoring & Troubleshooting** | [← X-Ray](03-xray.md) | [Back to Index](../../README.md)
+> **Domain 4: Monitoring & Troubleshooting** | [← X-Ray](mon-03-xray.md) | [Back to Index](../README.md)
 
 ---
 
@@ -132,4 +132,24 @@ aws sqs receive-message --queue-url https://sqs.region.amazonaws.com/account/dlq
 
 ---
 
-[← X-Ray](03-xray.md) | [Back to Index](../../README.md)
+## Practice
+
+Related exercises:
+
+- [30-troubleshooting](../exercises/30-troubleshooting/) — common failure modes
+- [31-serverless-api](../exercises/31-serverless-api/) through [34-multi-auth](../exercises/34-multi-auth/) — multi-service concept checks
+
+Multi-service labs (when available):
+
+- [labs/01-serverless-api](../labs/01-serverless-api/)
+- [labs/02-event-driven](../labs/02-event-driven/)
+- [labs/03-async-pipeline](../labs/03-async-pipeline/)
+- [labs/04-secure-config](../labs/04-secure-config/)
+
+```bash
+python runner.py exercises/30-troubleshooting
+```
+
+---
+
+[← X-Ray](mon-03-xray.md) | [Back to Index](../README.md)

@@ -1,6 +1,6 @@
 # AWS Secrets Manager & SSM Parameter Store
 
-> **Domain 2: Security** | [← KMS](03-kms.md) | [Back to Index](../../README.md) | [Next: Security Best Practices →](05-security-best-practices.md)
+> **Domain 2: Security** | [← KMS](sec-03-kms.md) | [Back to Index](../README.md) | [Next: Security Best Practices →](sec-05-security-best-practices.md)
 
 ---
 
@@ -229,4 +229,20 @@ def lambda_handler(event, context):
 
 ---
 
-[← KMS](03-kms.md) | [Back to Index](../../README.md) | [Next: Security Best Practices →](05-security-best-practices.md)
+## Practice
+
+Related exercises:
+
+- [19-secrets](../exercises/19-secrets/) — Secrets Manager and SSM Parameter Store
+
+Multi-service lab (when available):
+
+- [labs/04-secure-config](../labs/04-secure-config/) — Lambda reads secrets / parameters
+
+```bash
+python runner.py exercises/19-secrets
+```
+
+---
+
+[← KMS](sec-03-kms.md) | [Back to Index](../README.md) | [Next: Security Best Practices →](sec-05-security-best-practices.md)

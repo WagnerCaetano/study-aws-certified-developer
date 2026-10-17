@@ -1,4 +1,10 @@
-from solution import recommend_deployment_policy, build_ebextensions, build_health_check_config
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+recommend_deployment_policy = _mod.recommend_deployment_policy
+build_ebextensions = _mod.build_ebextensions
+build_health_check_config = _mod.build_health_check_config
 
 def test_deployment_policy():
     assert recommend_deployment_policy(False, False) == 'AllAtOnce'

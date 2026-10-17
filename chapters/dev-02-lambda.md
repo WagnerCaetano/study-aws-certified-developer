@@ -1,6 +1,6 @@
 # AWS Lambda Deep Dive
 
-> **Domain 1: Development with AWS Services** | [← SDK](01-aws-sdk.md) | [Back to Index](../../README.md) | [Next: API Gateway →](03-api-gateway.md)
+> **Domain 1: Development with AWS Services** | [← SDK](dev-01-aws-sdk.md) | [Back to Index](../README.md) | [Next: API Gateway →](dev-03-api-gateway.md)
 
 ---
 
@@ -416,4 +416,24 @@ aws lambda put-provisioned-concurrency-config \
 
 ---
 
-[← SDK](01-aws-sdk.md) | [Back to Index](../../README.md) | [Next: API Gateway →](03-api-gateway.md)
+## Practice
+
+Related exercises:
+
+- [01-lambda-basics](../exercises/01-lambda-basics/)
+- [02-lambda-advanced](../exercises/02-lambda-advanced/)
+- [03-lambda-performance](../exercises/03-lambda-performance/)
+
+Multi-service lab (when available):
+
+- [labs/01-serverless-api](../labs/01-serverless-api/) — API Gateway + Lambda + DynamoDB
+
+Also see: [references/lambda-limits.md](../references/lambda-limits.md)
+
+```bash
+python runner.py exercises/01-lambda-basics
+```
+
+---
+
+[← SDK](dev-01-aws-sdk.md) | [Back to Index](../README.md) | [Next: API Gateway →](dev-03-api-gateway.md)

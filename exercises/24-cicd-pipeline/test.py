@@ -1,4 +1,11 @@
-from solution import build_buildspec, build_pipeline_stage, build_source_action, determine_deployment_strategy
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_buildspec = _mod.build_buildspec
+build_pipeline_stage = _mod.build_pipeline_stage
+build_source_action = _mod.build_source_action
+determine_deployment_strategy = _mod.determine_deployment_strategy
 
 def test_buildspec():
     bs = build_buildspec(['pip install -r requirements.txt'], ['pytest'], ['sam build'], ['echo done'], ['packaged.yaml'])

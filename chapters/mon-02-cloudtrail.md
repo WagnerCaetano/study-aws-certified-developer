@@ -1,6 +1,6 @@
 # AWS CloudTrail
 
-> **Domain 4: Monitoring & Troubleshooting** | [← CloudWatch](01-cloudwatch.md) | [Back to Index](../../README.md) | [Next: X-Ray →](03-xray.md)
+> **Domain 4: Monitoring & Troubleshooting** | [← CloudWatch](mon-01-cloudwatch.md) | [Back to Index](../README.md) | [Next: X-Ray →](mon-03-xray.md)
 
 ---
 
@@ -120,4 +120,17 @@ fields @timestamp, eventName, userIdentity.arn, sourceIPAddress
 
 ---
 
-[← CloudWatch](01-cloudwatch.md) | [Back to Index](../../README.md) | [Next: X-Ray →](03-xray.md)
+## Practice
+
+No dedicated exercise for this chapter yet. Reinforce with:
+
+- [30-troubleshooting](../exercises/30-troubleshooting/) — diagnose permission / API failures
+- Practice exams: [exams/](../exams/)
+
+```bash
+python runner.py exercises/30-troubleshooting
+```
+
+---
+
+[← CloudWatch](mon-01-cloudwatch.md) | [Back to Index](../README.md) | [Next: X-Ray →](mon-03-xray.md)

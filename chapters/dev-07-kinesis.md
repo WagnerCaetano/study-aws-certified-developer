@@ -1,6 +1,6 @@
 # Amazon Kinesis
 
-> **Domain 1: Development with AWS Services** | [← SQS/SNS](06-sqs-sns.md) | [Back to Index](../../README.md) | [Next: ElastiCache →](08-elasticache.md)
+> **Domain 1: Development with AWS Services** | [← SQS/SNS](dev-06-sqs-sns.md) | [Back to Index](../README.md) | [Next: ElastiCache →](dev-08-elasticache.md)
 
 ---
 
@@ -197,4 +197,16 @@ firehose.put_record(
 
 ---
 
-[← SQS/SNS](06-sqs-sns.md) | [Back to Index](../../README.md) | [Next: ElastiCache →](08-elasticache.md)
+## Practice
+
+Related exercises:
+
+- [11-kinesis-streams](../exercises/11-kinesis-streams/) — shards, consumers, checkpoints
+
+```bash
+python runner.py exercises/11-kinesis-streams
+```
+
+---
+
+[← SQS/SNS](dev-06-sqs-sns.md) | [Back to Index](../README.md) | [Next: ElastiCache →](dev-08-elasticache.md)

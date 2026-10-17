@@ -1,6 +1,6 @@
 # Amazon CloudWatch
 
-> **Domain 4: Monitoring & Troubleshooting** | [← CDK](../03-deployment/05-cdk.md) | [Back to Index](../../README.md) | [Next: CloudTrail →](02-cloudtrail.md)
+> **Domain 4: Monitoring & Troubleshooting** | [← CDK](dep-05-cdk.md) | [Back to Index](../README.md) | [Next: CloudTrail →](mon-02-cloudtrail.md)
 
 ---
 
@@ -214,4 +214,17 @@ events.put_rule(
 
 ---
 
-[← CDK](../03-deployment/05-cdk.md) | [Back to Index](../../README.md) | [Next: CloudTrail →](02-cloudtrail.md)
+## Practice
+
+Related exercises:
+
+- [27-cloudwatch-logs](../exercises/27-cloudwatch-logs/) — log groups, filters, Insights
+- [28-cloudwatch-alarms](../exercises/28-cloudwatch-alarms/) — metrics and alarms
+
+```bash
+python runner.py exercises/27-cloudwatch-logs
+```
+
+---
+
+[← CDK](dep-05-cdk.md) | [Back to Index](../README.md) | [Next: CloudTrail →](mon-02-cloudtrail.md)

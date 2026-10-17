@@ -1,10 +1,18 @@
-from solution import design_user_table, design_orders_table, design_orders_by_status
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+design_user_table = _mod.design_user_table
+design_orders_table = _mod.design_orders_table
+design_orders_by_status = _mod.design_orders_by_status
+
 
 def test_user_table_has_partition_key():
     table = design_user_table()
     assert table['TableName'] == 'Users'
     keys = table['KeySchema']
     assert any(k['AttributeName'] == 'userId' and k['KeyType'] == 'HASH' for k in keys)
+
 
 def test_orders_table_has_composite_key():
     table = design_orders_table()
@@ -16,6 +24,7 @@ def test_orders_table_has_composite_key():
     assert hash_keys[0]['AttributeName'] == 'userId'
     assert range_keys[0]['AttributeName'] == 'orderDate'
 
+
 def test_gsi_for_status():
     base = design_orders_table()
     table = design_orders_by_status(base)
@@ -24,6 +33,7 @@ def test_gsi_for_status():
     assert gsi['IndexName'] == 'ByStatus'
     gsi_keys = gsi['KeySchema']
     assert any(k['AttributeName'] == 'status' for k in gsi_keys)
+
 
 def test_uses_pay_per_request():
     table = design_user_table()

@@ -1,6 +1,6 @@
 # Amazon Cognito
 
-> **Domain 2: Security** | [← IAM](01-iam.md) | [Back to Index](../../README.md) | [Next: KMS →](03-kms.md)
+> **Domain 2: Security** | [← IAM](sec-01-iam.md) | [Back to Index](../README.md) | [Next: KMS →](sec-03-kms.md)
 
 ---
 
@@ -182,4 +182,17 @@ def verify_cognito_token(token, user_pool_id):
 
 ---
 
-[← IAM](01-iam.md) | [Back to Index](../../README.md) | [Next: KMS →](03-kms.md)
+## Practice
+
+Related exercises:
+
+- [17-cognito-auth](../exercises/17-cognito-auth/) — User Pools, tokens, authorizers
+- [34-multi-auth](../exercises/34-multi-auth/) — offline concept check
+
+```bash
+python runner.py exercises/17-cognito-auth
+```
+
+---
+
+[← IAM](sec-01-iam.md) | [Back to Index](../README.md) | [Next: KMS →](sec-03-kms.md)

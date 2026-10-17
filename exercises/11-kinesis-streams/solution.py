@@ -16,7 +16,6 @@ def parse_kinesis_event(event):
     for record in event.get('Records', []):
         kinesis = record.get('kinesis', {})
         data = kinesis.get('data', '')
-        # Fix: Base64 decode the data
         decoded = base64.b64decode(data).decode('utf-8')
         results.append({
             'data': json.loads(decoded),

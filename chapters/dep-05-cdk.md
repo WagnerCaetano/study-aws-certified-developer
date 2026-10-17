@@ -1,6 +1,6 @@
 # AWS CDK (Cloud Development Kit)
 
-> **Domain 3: Deployment** | [← Elastic Beanstalk](04-elastic-beanstalk.md) | [Back to Index](../../README.md) | [Next: CloudWatch →](../04-monitoring/01-cloudwatch.md)
+> **Domain 3: Deployment** | [← Elastic Beanstalk](dep-04-elastic-beanstalk.md) | [Back to Index](../README.md) | [Next: CloudWatch →](mon-01-cloudwatch.md)
 
 ---
 
@@ -134,4 +134,16 @@ cdk bootstrap
 
 ---
 
-[← Elastic Beanstalk](04-elastic-beanstalk.md) | [Back to Index](../../README.md) | [Next: CloudWatch →](../04-monitoring/01-cloudwatch.md)
+## Practice
+
+Related exercises:
+
+- [26-cdk-constructs](../exercises/26-cdk-constructs/) — stacks, constructs, synth
+
+```bash
+python runner.py exercises/26-cdk-constructs
+```
+
+---
+
+[← Elastic Beanstalk](dep-04-elastic-beanstalk.md) | [Back to Index](../README.md) | [Next: CloudWatch →](mon-01-cloudwatch.md)

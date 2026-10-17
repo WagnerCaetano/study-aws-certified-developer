@@ -1,6 +1,6 @@
 # AWS Step Functions
 
-> **Domain 1: Development with AWS Services** | [← ElastiCache](08-elasticache.md) | [Back to Index](../../README.md) | [Next: Containers →](10-containers.md)
+> **Domain 1: Development with AWS Services** | [← ElastiCache](dev-08-elasticache.md) | [Back to Index](../README.md) | [Next: Containers →](dev-10-containers.md)
 
 ---
 
@@ -291,4 +291,16 @@ MyStateMachine:
 
 ---
 
-[← ElastiCache](08-elasticache.md) | [Back to Index](../../README.md) | [Next: Containers →](10-containers.md)
+## Practice
+
+Related exercises:
+
+- [13-step-functions](../exercises/13-step-functions/) — ASL states, retries, Map
+
+```bash
+python runner.py exercises/13-step-functions
+```
+
+---
+
+[← ElastiCache](dev-08-elasticache.md) | [Back to Index](../README.md) | [Next: Containers →](dev-10-containers.md)

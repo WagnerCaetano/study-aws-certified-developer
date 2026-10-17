@@ -1,6 +1,6 @@
 # AWS KMS & Encryption
 
-> **Domain 2: Security** | [← Cognito](02-cognito.md) | [Back to Index](../../README.md) | [Next: Secrets Manager →](04-secrets.md)
+> **Domain 2: Security** | [← Cognito](sec-02-cognito.md) | [Back to Index](../README.md) | [Next: Secrets →](sec-04-secrets.md)
 
 ---
 
@@ -157,4 +157,20 @@ dynamodb.create_table(
 
 ---
 
-[← Cognito](02-cognito.md) | [Back to Index](../../README.md) | [Next: Secrets Manager →](04-secrets.md)
+## Practice
+
+Related exercises:
+
+- [18-kms-encryption](../exercises/18-kms-encryption/) — encrypt/decrypt, envelope encryption
+
+Multi-service lab (when available):
+
+- [labs/04-secure-config](../labs/04-secure-config/) — Secrets Manager / SSM + KMS
+
+```bash
+python runner.py exercises/18-kms-encryption
+```
+
+---
+
+[← Cognito](sec-02-cognito.md) | [Back to Index](../README.md) | [Next: Secrets →](sec-04-secrets.md)

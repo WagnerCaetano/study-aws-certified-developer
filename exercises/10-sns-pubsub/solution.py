@@ -1,46 +1,70 @@
-import json
+"""SNS helpers for LocalStack (publish, subscribe SQS, filter policy) + event parsing."""
 
-def build_publish_params(topic_arn, message, subject=None, attributes=None):
-    """Build SNS publish parameters."""
-    params = {
-        'TopicArn': topic_arn,
-        'Message': json.dumps(message) if isinstance(message, dict) else message
+from __future__ import annotations
+
+import json
+from typing import Any, Dict, List, Optional, Union
+
+
+def create_topic(client, name: str) -> str:
+    """Create a topic and return its ARN."""
+    return client.create_topic(Name=name)["TopicArn"]
+
+
+def publish_json(
+    client,
+    topic_arn: str,
+    message: Union[dict, str],
+    subject: Optional[str] = None,
+    attributes: Optional[Dict[str, Any]] = None,
+) -> str:
+    """Publish a message; return MessageId."""
+    params: Dict[str, Any] = {
+        "TopicArn": topic_arn,
+        "Message": json.dumps(message) if isinstance(message, dict) else message,
     }
     if subject:
-        params['Subject'] = subject
+        params["Subject"] = subject
     if attributes:
         msg_attrs = {}
         for key, value in attributes.items():
-            msg_attrs[key] = {
-                'DataType': 'String',
-                'StringValue': str(value)
-            }
-        params['MessageAttributes'] = msg_attrs
-    return params
+            msg_attrs[key] = {"DataType": "String", "StringValue": str(value)}
+        params["MessageAttributes"] = msg_attrs
+    return client.publish(**params)["MessageId"]
 
-def build_sqs_subscription(topic_arn, queue_arn):
-    """Build params to subscribe SQS queue to SNS topic."""
-    return {
-        'TopicArn': topic_arn,
-        'Protocol': 'sqs',
-        'Endpoint': queue_arn
-    }
 
-def build_filter_policy(filter_rules):
-    """Build SNS subscription filter policy."""
+def subscribe_queue(sns_client, topic_arn: str, queue_arn: str) -> str:
+    """Subscribe an SQS queue to an SNS topic; return SubscriptionArn."""
+    resp = sns_client.subscribe(
+        TopicArn=topic_arn,
+        Protocol="sqs",
+        Endpoint=queue_arn,
+    )
+    return resp["SubscriptionArn"]
+
+
+def set_filter_policy(sns_client, subscription_arn: str, filter_rules: dict) -> None:
+    """Set subscription FilterPolicy from attribute -> list-of-values map."""
     policy = {}
     for attr, values in filter_rules.items():
         policy[attr] = values if isinstance(values, list) else [values]
-    return {'FilterPolicy': json.dumps(policy)}
+    sns_client.set_subscription_attributes(
+        SubscriptionArn=subscription_arn,
+        AttributeName="FilterPolicy",
+        AttributeValue=json.dumps(policy),
+    )
 
-def parse_sns_event(event):
-    """Parse SNS event from Lambda trigger."""
+
+def parse_sns_event(event: dict) -> List[dict]:
+    """Parse Lambda SNS event records (key is ``Sns``, not ``SNS``)."""
     results = []
-    for record in event.get('Records', []):
-        sns = record.get('Sns', {})
-        results.append({
-            'message': sns.get('Message'),
-            'subject': sns.get('Subject'),
-            'message_id': sns.get('MessageId')
-        })
+    for record in event.get("Records", []):
+        sns = record.get("Sns", {})
+        results.append(
+            {
+                "message": sns.get("Message"),
+                "subject": sns.get("Subject"),
+                "message_id": sns.get("MessageId"),
+            }
+        )
     return results

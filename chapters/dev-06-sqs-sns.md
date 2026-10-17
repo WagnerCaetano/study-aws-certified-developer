@@ -1,6 +1,6 @@
 # SQS, SNS & EventBridge
 
-> **Domain 1: Development with AWS Services** | [← S3](05-s3.md) | [Back to Index](../../README.md) | [Next: Kinesis →](07-kinesis.md)
+> **Domain 1: Development with AWS Services** | [← S3](dev-05-s3.md) | [Back to Index](../README.md) | [Next: Kinesis →](dev-07-kinesis.md)
 
 ---
 
@@ -487,4 +487,24 @@ lambda_client.put_function_event_invoke_config(
 
 ---
 
-[← S3](05-s3.md) | [Back to Index](../../README.md) | [Next: Kinesis →](07-kinesis.md)
+## Practice
+
+Related exercises:
+
+- [09-sqs-messaging](../exercises/09-sqs-messaging/) — visibility timeout, delete, DLQ
+- [10-sns-pubsub](../exercises/10-sns-pubsub/) — topics, subscriptions, filters
+- [32-event-driven](../exercises/32-event-driven/) — offline concept check
+
+Multi-service lab (when available):
+
+- [labs/02-event-driven](../labs/02-event-driven/) — SNS to SQS to Lambda
+
+Also see: [references/messaging-comparison.md](../references/messaging-comparison.md)
+
+```bash
+python runner.py exercises/09-sqs-messaging
+```
+
+---
+
+[← S3](dev-05-s3.md) | [Back to Index](../README.md) | [Next: Kinesis →](dev-07-kinesis.md)

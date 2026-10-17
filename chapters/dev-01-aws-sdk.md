@@ -1,6 +1,6 @@
 # AWS SDK & CLI Overview
 
-> **Domain 1: Development with AWS Services** | [← Back to Index](../../README.md) | [Next: Lambda →](02-lambda.md)
+> **Domain 1: Development with AWS Services** | [← Back to Index](../README.md) | [Next: Lambda →](dev-02-lambda.md)
 
 ---
 
@@ -201,4 +201,18 @@ except ClientError as e:
 
 ---
 
-[← Back to Index](../../README.md) | [Next: Lambda Deep Dive →](02-lambda.md)
+## Practice
+
+Related exercises (edit `starter.py`, then run the runner):
+
+- [01-lambda-basics](../exercises/01-lambda-basics/) — handler basics & SDK usage
+- [02-lambda-advanced](../exercises/02-lambda-advanced/) — events, context, env config
+- [03-lambda-performance](../exercises/03-lambda-performance/) — cold starts & reuse
+
+```bash
+python runner.py exercises/01-lambda-basics
+```
+
+---
+
+[← Back to Index](../README.md) | [Next: Lambda →](dev-02-lambda.md)

@@ -1,6 +1,6 @@
 # Amazon S3 for Developers
 
-> **Domain 1: Development with AWS Services** | [← DynamoDB](04-dynamodb.md) | [Back to Index](../../README.md) | [Next: SQS, SNS & EventBridge →](06-sqs-sns.md)
+> **Domain 1: Development with AWS Services** | [← DynamoDB](dev-04-dynamodb.md) | [Back to Index](../README.md) | [Next: SQS/SNS →](dev-06-sqs-sns.md)
 
 ---
 
@@ -408,4 +408,22 @@ Endpoint: http://my-website.s3-website-us-east-1.amazonaws.com
 
 ---
 
-[← DynamoDB](04-dynamodb.md) | [Back to Index](../../README.md) | [Next: SQS, SNS & EventBridge →](06-sqs-sns.md)
+## Practice
+
+Related exercises:
+
+- [07-s3-operations](../exercises/07-s3-operations/) — upload, get, presigned URLs
+- [08-s3-security](../exercises/08-s3-security/) — bucket policies & encryption
+- [33-data-pipeline](../exercises/33-data-pipeline/) — offline concept check
+
+Multi-service lab (when available):
+
+- [labs/03-async-pipeline](../labs/03-async-pipeline/) — S3 event to Lambda to DynamoDB
+
+```bash
+python runner.py exercises/07-s3-operations
+```
+
+---
+
+[← DynamoDB](dev-04-dynamodb.md) | [Back to Index](../README.md) | [Next: SQS/SNS →](dev-06-sqs-sns.md)

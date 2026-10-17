@@ -1,6 +1,6 @@
 # Amazon ElastiCache
 
-> **Domain 1: Development with AWS Services** | [← Kinesis](07-kinesis.md) | [Back to Index](../../README.md) | [Next: Step Functions →](09-step-functions.md)
+> **Domain 1: Development with AWS Services** | [← Kinesis](dev-07-kinesis.md) | [Back to Index](../README.md) | [Next: Step Functions →](dev-09-step-functions.md)
 
 ---
 
@@ -203,4 +203,16 @@ r.setex('session:abc', 3600, 'user_data')
 
 ---
 
-[← Kinesis](07-kinesis.md) | [Back to Index](../../README.md) | [Next: Step Functions →](09-step-functions.md)
+## Practice
+
+Related exercises:
+
+- [12-elasticache](../exercises/12-elasticache/) — cache-aside patterns
+
+```bash
+python runner.py exercises/12-elasticache
+```
+
+---
+
+[← Kinesis](dev-07-kinesis.md) | [Back to Index](../README.md) | [Next: Step Functions →](dev-09-step-functions.md)

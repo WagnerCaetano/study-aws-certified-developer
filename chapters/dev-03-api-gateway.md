@@ -1,6 +1,6 @@
 # Amazon API Gateway
 
-> **Domain 1: Development with AWS Services** | [← Lambda](02-lambda.md) | [Back to Index](../../README.md) | [Next: DynamoDB →](04-dynamodb.md)
+> **Domain 1: Development with AWS Services** | [← Lambda](dev-02-lambda.md) | [Back to Index](../README.md) | [Next: DynamoDB →](dev-04-dynamodb.md)
 
 ---
 
@@ -340,4 +340,23 @@ def lambda_handler(event, context):
 
 ---
 
-[← Lambda](02-lambda.md) | [Back to Index](../../README.md) | [Next: DynamoDB →](04-dynamodb.md)
+## Practice
+
+Related exercises:
+
+- [04-api-gateway](../exercises/04-api-gateway/) — routing & integration patterns
+- [31-serverless-api](../exercises/31-serverless-api/) — offline concept check
+
+Multi-service lab (when available):
+
+- [labs/01-serverless-api](../labs/01-serverless-api/) — API Gateway + Lambda + DynamoDB
+
+Also see: [references/api-gateway-cheatsheet.md](../references/api-gateway-cheatsheet.md)
+
+```bash
+python runner.py exercises/04-api-gateway
+```
+
+---
+
+[← Lambda](dev-02-lambda.md) | [Back to Index](../README.md) | [Next: DynamoDB →](dev-04-dynamodb.md)

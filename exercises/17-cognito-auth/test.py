@@ -1,5 +1,12 @@
 import json
-from solution import build_user_pool_config, build_app_client_config, parse_cognito_event, build_identity_pool_config
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_user_pool_config = _mod.build_user_pool_config
+build_app_client_config = _mod.build_app_client_config
+parse_cognito_event = _mod.parse_cognito_event
+build_identity_pool_config = _mod.build_identity_pool_config
 
 def test_user_pool_config():
     config = build_user_pool_config('MyAppPool')

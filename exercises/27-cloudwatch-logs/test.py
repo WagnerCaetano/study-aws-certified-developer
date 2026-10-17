@@ -1,4 +1,10 @@
-from solution import build_log_insights_query, build_metric_filter, build_log_group_name
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_log_insights_query = _mod.build_log_insights_query
+build_metric_filter = _mod.build_metric_filter
+build_log_group_name = _mod.build_log_group_name
 
 def test_error_query():
     query = build_log_insights_query('@message like /ERROR/', 'count(*) as errorCount', '@timestamp desc')

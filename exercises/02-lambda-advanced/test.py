@@ -1,6 +1,10 @@
 import json
 import os
-from solution import handler
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+handler = _mod.handler
+
 
 def test_reads_env_variables():
     os.environ['TABLE_NAME'] = 'UsersTable'
@@ -11,6 +15,7 @@ def test_reads_env_variables():
     assert body['table'] == 'UsersTable'
     assert body['stage'] == 'prod'
 
+
 def test_handles_sqs_event():
     event = {'Records': [
         {'body': json.dumps({'id': 1})},
@@ -20,6 +25,7 @@ def test_handles_sqs_event():
     assert result['statusCode'] == 200
     body = json.loads(result['body'])
     assert body['processed'] == 2
+
 
 def test_error_handling():
     # Force an error with malformed data

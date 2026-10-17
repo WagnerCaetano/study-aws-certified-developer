@@ -1,4 +1,10 @@
-from solution import classify_construct_level, identify_cdk_command, build_construct_props
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+classify_construct_level = _mod.classify_construct_level
+identify_cdk_command = _mod.identify_cdk_command
+build_construct_props = _mod.build_construct_props
 
 def test_l1_construct():
     assert classify_construct_level('CfnBucket', {}) == 'L1'

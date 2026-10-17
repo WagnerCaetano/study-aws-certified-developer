@@ -1,5 +1,12 @@
 import json
-from solution import build_lambda_trust_policy, build_ecs_trust_policy, build_assume_role_policy, extract_temp_credentials
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_lambda_trust_policy = _mod.build_lambda_trust_policy
+build_ecs_trust_policy = _mod.build_ecs_trust_policy
+build_assume_role_policy = _mod.build_assume_role_policy
+extract_temp_credentials = _mod.extract_temp_credentials
 
 def test_lambda_trust():
     trust = build_lambda_trust_policy()

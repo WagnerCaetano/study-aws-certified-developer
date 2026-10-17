@@ -1,4 +1,10 @@
-from solution import build_task_definition, build_service_config, get_fargate_cpu_memory_options
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_task_definition = _mod.build_task_definition
+build_service_config = _mod.build_service_config
+get_fargate_cpu_memory_options = _mod.get_fargate_cpu_memory_options
 
 def test_task_definition():
     td = build_task_definition('my-app', '123456.dkr.ecr.us-east-1.amazonaws.com/my-app:latest', 256, 512, 8080, 'role-arn', 'exec-role-arn')

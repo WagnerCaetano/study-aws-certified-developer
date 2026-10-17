@@ -1,4 +1,11 @@
-from solution import build_sub_arn, build_parameter, build_output, get_intrinsic_function
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_sub_arn = _mod.build_sub_arn
+build_parameter = _mod.build_parameter
+build_output = _mod.build_output
+get_intrinsic_function = _mod.get_intrinsic_function
 
 def test_arn_builder():
     arn = build_sub_arn('s3', 'my-bucket')

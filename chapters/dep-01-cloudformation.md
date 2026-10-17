@@ -1,6 +1,6 @@
 # AWS CloudFormation
 
-> **Domain 3: Deployment** | [← Security Best Practices](../02-security/05-security-best-practices.md) | [Back to Index](../../README.md) | [Next: SAM →](02-sam.md)
+> **Domain 3: Deployment** | [← Security Best Practices](sec-05-security-best-practices.md) | [Back to Index](../README.md) | [Next: SAM →](dep-02-sam.md)
 
 ---
 
@@ -180,4 +180,17 @@ Resources:
 
 ---
 
-[← Security Best Practices](../02-security/05-security-best-practices.md) | [Back to Index](../../README.md) | [Next: SAM →](02-sam.md)
+## Practice
+
+Related exercises:
+
+- [21-cfn-basics](../exercises/21-cfn-basics/) — templates, parameters, outputs
+- [22-cfn-advanced](../exercises/22-cfn-advanced/) — nested stacks, conditions, custom resources
+
+```bash
+python runner.py exercises/21-cfn-basics
+```
+
+---
+
+[← Security Best Practices](sec-05-security-best-practices.md) | [Back to Index](../README.md) | [Next: SAM →](dep-02-sam.md)

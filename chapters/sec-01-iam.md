@@ -1,6 +1,6 @@
 # IAM for Developers
 
-> **Domain 2: Security** | [← Containers](../01-development/10-containers.md) | [Back to Index](../../README.md) | [Next: Cognito →](02-cognito.md)
+> **Domain 2: Security** | [← Containers](dev-10-containers.md) | [Back to Index](../README.md) | [Next: Cognito →](sec-02-cognito.md)
 
 ---
 
@@ -216,4 +216,17 @@ Account A (111111111111)          Account B (999999999999)
 
 ---
 
-[← Containers](../01-development/10-containers.md) | [Back to Index](../../README.md) | [Next: Cognito →](02-cognito.md)
+## Practice
+
+Related exercises:
+
+- [15-iam-policies](../exercises/15-iam-policies/) — identity and resource policies
+- [16-iam-roles](../exercises/16-iam-roles/) — trust policies and AssumeRole
+
+```bash
+python runner.py exercises/15-iam-policies
+```
+
+---
+
+[← Containers](dev-10-containers.md) | [Back to Index](../README.md) | [Next: Cognito →](sec-02-cognito.md)

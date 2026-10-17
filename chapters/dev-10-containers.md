@@ -1,6 +1,6 @@
 # Containers: ECS, ECR & Fargate
 
-> **Domain 1: Development with AWS Services** | [← Step Functions](09-step-functions.md) | [Back to Index](../../README.md) | [Next: IAM →](../02-security/01-iam.md)
+> **Domain 1: Development with AWS Services** | [← Step Functions](dev-09-step-functions.md) | [Back to Index](../README.md) | [Next: IAM →](sec-01-iam.md)
 
 ---
 
@@ -266,4 +266,16 @@ Green (new):    [v2] [v2] [v2]  ← New version
 
 ---
 
-[← Step Functions](09-step-functions.md) | [Back to Index](../../README.md) | [Next: IAM →](../02-security/01-iam.md)
+## Practice
+
+Related exercises:
+
+- [14-ecs-fargate](../exercises/14-ecs-fargate/) — task defs, roles, Fargate
+
+```bash
+python runner.py exercises/14-ecs-fargate
+```
+
+---
+
+[← Step Functions](dev-09-step-functions.md) | [Back to Index](../README.md) | [Next: IAM →](sec-01-iam.md)

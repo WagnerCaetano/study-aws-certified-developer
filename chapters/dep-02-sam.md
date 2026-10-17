@@ -1,6 +1,6 @@
 # AWS SAM (Serverless Application Model)
 
-> **Domain 3: Deployment** | [← CloudFormation](01-cloudformation.md) | [Back to Index](../../README.md) | [Next: CI/CD →](03-cicd.md)
+> **Domain 3: Deployment** | [← CloudFormation](dep-01-cloudformation.md) | [Back to Index](../README.md) | [Next: CI/CD →](dep-03-cicd.md)
 
 ---
 
@@ -196,4 +196,16 @@ MyFunction:
 
 ---
 
-[← CloudFormation](01-cloudformation.md) | [Back to Index](../../README.md) | [Next: CI/CD →](03-cicd.md)
+## Practice
+
+Related exercises:
+
+- [23-sam-templates](../exercises/23-sam-templates/) — SAM resources and transforms
+
+```bash
+python runner.py exercises/23-sam-templates
+```
+
+---
+
+[← CloudFormation](dep-01-cloudformation.md) | [Back to Index](../README.md) | [Next: CI/CD →](dep-03-cicd.md)

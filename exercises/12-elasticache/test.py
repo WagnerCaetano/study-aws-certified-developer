@@ -1,4 +1,11 @@
-from solution import get_user_with_cache, save_user_with_cache, cache, _mock_db
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+get_user_with_cache = _mod.get_user_with_cache
+save_user_with_cache = _mod.save_user_with_cache
+cache = _mod.cache
+_mock_db = _mod._mock_db
 
 def setup():
     _mock_db.clear()

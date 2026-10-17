@@ -7,23 +7,32 @@
 ## How to Use
 
 Each exercise follows the **Exercism-style** format:
-1. 📖 Read the problem description
-2. 🔧 Fix the code in the exercise file
-3. ✅ Run the test to validate your solution
+1. 📖 Read the problem description in the exercise `README.md`
+2. 🔧 Implement or fix **`starter.py`** (intentionally incomplete or buggy)
+3. ✅ Run tests via `runner.py` (defaults to `starter.py`)
+4. 📎 Compare with **`solution.py`** when stuck (`--solution` runs the reference implementation)
+
+Tests load the module named by the `EXERCISE_MODULE` environment variable (the runner sets this to `starter` or `solution`).
 
 ### Running Exercises
 
 ```bash
-# Run a single exercise
+# Run a single exercise (tests starter.py)
 python runner.py exercises/01-lambda-basics
 
-# Run all exercises in a category
-python runner.py exercises/01-lambda-basics exercises/02-lambda-advanced
+# Validate the reference solution
+python runner.py exercises/01-lambda-basics --solution
+
+# Run all exercises in a domain (development, security, deployment, monitoring)
+python runner.py --domain monitoring
+
+# List available exercise folders
+python runner.py --list
 
 # Run all exercises
 python runner.py --all
 
-# Check your progress
+# Check your progress (starter passes recorded in .progress.json)
 python runner.py --progress
 ```
 
@@ -83,13 +92,15 @@ python runner.py --progress
 
 ### 🔷 Advanced Scenarios
 
-| # | Exercise | Topic | Difficulty |
-|---|----------|-------|------------|
-| 31 | [Serverless API](31-serverless-api/) | Full API with Lambda + DynamoDB + API GW | ⭐⭐⭐ |
-| 32 | [Event-Driven Architecture](32-event-driven/) | SNS + SQS + Lambda fanout | ⭐⭐⭐ |
-| 33 | [Data Pipeline](33-data-pipeline/) | S3 → Lambda → DynamoDB pipeline | ⭐⭐⭐ |
-| 34 | [Multi-Service Auth](34-multi-auth/) | Cognito + API GW + Lambda auth flow | ⭐⭐⭐ |
-| 35 | [Deployment Pipeline](35-deploy-pipeline/) | CodeCommit → CodeBuild → CodeDeploy | ⭐⭐⭐ |
+Offline concept checks — hands-on LocalStack versions live under **[labs/](../labs/)**.
+
+| # | Exercise | Topic | Lab | Difficulty |
+|---|----------|-------|-----|------------|
+| 31 | [Serverless API](31-serverless-api/) | API Gateway proxy patterns | [labs/01](../labs/01-serverless-api/) | ⭐⭐⭐ |
+| 32 | [Event-Driven Architecture](32-event-driven/) | SNS + SQS fan-out concepts | [labs/02](../labs/02-event-driven/) | ⭐⭐⭐ |
+| 33 | [Data Pipeline](33-data-pipeline/) | S3 → Lambda → DynamoDB concepts | [labs/03](../labs/03-async-pipeline/) | ⭐⭐⭐ |
+| 34 | [Multi-Service Auth](34-multi-auth/) | Cognito / JWT concepts | [labs/04](../labs/04-secure-config/) (secure config) | ⭐⭐⭐ |
+| 35 | [Deployment Pipeline](35-deploy-pipeline/) | CodeCommit → CodeBuild → CodeDeploy | — | ⭐⭐⭐ |
 
 ---
 

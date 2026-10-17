@@ -1,6 +1,6 @@
 # AWS Elastic Beanstalk
 
-> **Domain 3: Deployment** | [← CI/CD](03-cicd.md) | [Back to Index](../../README.md) | [Next: AWS CDK →](05-cdk.md)
+> **Domain 3: Deployment** | [← CI/CD](dep-03-cicd.md) | [Back to Index](../README.md) | [Next: CDK →](dep-05-cdk.md)
 
 ---
 
@@ -119,4 +119,16 @@ eb terminate production
 
 ---
 
-[← CI/CD](03-cicd.md) | [Back to Index](../../README.md) | [Next: AWS CDK →](05-cdk.md)
+## Practice
+
+Related exercises:
+
+- [25-elastic-beanstalk](../exercises/25-elastic-beanstalk/) — environments and deployment policies
+
+```bash
+python runner.py exercises/25-elastic-beanstalk
+```
+
+---
+
+[← CI/CD](dep-03-cicd.md) | [Back to Index](../README.md) | [Next: CDK →](dep-05-cdk.md)

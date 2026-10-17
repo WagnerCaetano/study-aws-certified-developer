@@ -1,4 +1,11 @@
-from solution import review_lambda_config, review_s3_config, review_api_gateway_config, generate_secure_lambda_config
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+review_lambda_config = _mod.review_lambda_config
+review_s3_config = _mod.review_s3_config
+review_api_gateway_config = _mod.review_api_gateway_config
+generate_secure_lambda_config = _mod.generate_secure_lambda_config
 
 def test_detect_access_keys():
     issues = review_lambda_config({'access_key_id': 'AKIA...'})

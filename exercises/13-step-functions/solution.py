@@ -1,81 +1,128 @@
-import json
+"""Step Functions ASL builders + LocalStack create/start helpers."""
 
-def build_order_workflow(order_function_arn, inventory_function_arn, ship_function_arn):
-    """Build an order processing state machine."""
+from __future__ import annotations
+
+import json
+from typing import Any, Dict, List
+
+
+def build_order_workflow(
+    order_function_arn: str,
+    inventory_function_arn: str,
+    ship_function_arn: str,
+) -> dict:
+    """Build an order-processing ASL definition (exam-shaped)."""
     return {
-        'Comment': 'Order processing workflow',
-        'StartAt': 'ValidateOrder',
-        'States': {
-            'ValidateOrder': {
-                'Type': 'Task',
-                'Resource': order_function_arn,
-                'Next': 'CheckInventory'
+        "Comment": "Order processing workflow",
+        "StartAt": "ValidateOrder",
+        "States": {
+            "ValidateOrder": {
+                "Type": "Task",
+                "Resource": order_function_arn,
+                "Next": "CheckInventory",
             },
-            'CheckInventory': {
-                'Type': 'Task',
-                'Resource': inventory_function_arn,
-                'Retry': [{
-                    'ErrorEquals': ['States.TaskFailed'],
-                    'IntervalSeconds': 2,
-                    'MaxAttempts': 3,
-                    'BackoffRate': 2.0
-                }],
-                'Catch': [{
-                    'ErrorEquals': ['States.ALL'],
-                    'Next': 'OrderFailed'
-                }],
-                'Next': 'InStock?'
+            "CheckInventory": {
+                "Type": "Task",
+                "Resource": inventory_function_arn,
+                "Retry": [
+                    {
+                        "ErrorEquals": ["States.TaskFailed"],
+                        "IntervalSeconds": 2,
+                        "MaxAttempts": 3,
+                        "BackoffRate": 2.0,
+                    }
+                ],
+                "Catch": [
+                    {
+                        "ErrorEquals": ["States.ALL"],
+                        "Next": "OrderFailed",
+                    }
+                ],
+                "Next": "InStock?",
             },
-            'InStock?': {
-                'Type': 'Choice',
-                'Choices': [{
-                    'Variable': '$.inStock',
-                    'BooleanEquals': True,
-                    'Next': 'ShipOrder'
-                }],
-                'Default': 'Backorder'
+            "InStock?": {
+                "Type": "Choice",
+                "Choices": [
+                    {
+                        "Variable": "$.inStock",
+                        "BooleanEquals": True,
+                        "Next": "ShipOrder",
+                    }
+                ],
+                "Default": "Backorder",
             },
-            'ShipOrder': {
-                'Type': 'Task',
-                'Resource': ship_function_arn,
-                'End': True
+            "ShipOrder": {
+                "Type": "Task",
+                "Resource": ship_function_arn,
+                "End": True,
             },
-            'Backorder': {
-                'Type': 'Fail',
-                'Error': 'OutOfStock',
-                'Cause': 'Item not in stock'
+            "Backorder": {
+                "Type": "Fail",
+                "Error": "OutOfStock",
+                "Cause": "Item not in stock",
             },
-            'OrderFailed': {
-                'Type': 'Fail',
-                'Error': 'OrderFailed',
-                'Cause': 'Could not check inventory'
-            }
-        }
+            "OrderFailed": {
+                "Type": "Fail",
+                "Error": "OrderFailed",
+                "Cause": "Could not check inventory",
+            },
+        },
     }
 
-def validate_state_machine(definition):
-    """Validate a state machine definition."""
-    errors = []
-    
-    if 'StartAt' not in definition:
-        errors.append('Missing StartAt')
-    
-    if 'States' not in definition:
-        errors.append('Missing States')
+
+def validate_state_machine(definition: dict) -> List[str]:
+    """Validate required ASL fields; return a list of error strings."""
+    errors: List[str] = []
+    if "StartAt" not in definition:
+        errors.append("Missing StartAt")
+    if "States" not in definition:
+        errors.append("Missing States")
         return errors
-    
-    states = definition['States']
-    start = definition.get('StartAt')
-    
+
+    states = definition["States"]
+    start = definition.get("StartAt")
     if start not in states:
         errors.append(f'StartAt state "{start}" not found in States')
-    
+
     for name, state in states.items():
-        if 'Type' not in state:
+        if "Type" not in state:
             errors.append(f'State "{name}" missing Type')
-        elif state['Type'] == 'Task' and 'Resource' not in state:
+        elif state["Type"] == "Task" and "Resource" not in state:
             errors.append(f'Task state "{name}" missing Resource')
-        elif state['Type'] == 'Choice' and 'Choices' not in state:
+        elif state["Type"] == "Choice" and "Choices" not in state:
             errors.append(f'Choice state "{name}" missing Choices')
-    
     return errors
+
+
+def build_pass_workflow(result: dict | None = None) -> dict:
+    """Minimal Pass-state machine safe to run on LocalStack without Lambda."""
+    return {
+        "Comment": "LocalStack-friendly pass workflow",
+        "StartAt": "Done",
+        "States": {
+            "Done": {
+                "Type": "Pass",
+                "Result": result or {"ok": True},
+                "End": True,
+            }
+        },
+    }
+
+
+def create_state_machine(sfn_client, name: str, definition: dict, role_arn: str) -> str:
+    """Create a state machine; return its ARN."""
+    resp = sfn_client.create_state_machine(
+        name=name,
+        definition=json.dumps(definition),
+        roleArn=role_arn,
+        type="STANDARD",
+    )
+    return resp["stateMachineArn"]
+
+
+def start_execution(sfn_client, state_machine_arn: str, input_data: dict | None = None) -> str:
+    """Start an execution; return execution ARN."""
+    params: Dict[str, Any] = {"stateMachineArn": state_machine_arn}
+    if input_data is not None:
+        params["input"] = json.dumps(input_data)
+    return sfn_client.start_execution(**params)["executionArn"]

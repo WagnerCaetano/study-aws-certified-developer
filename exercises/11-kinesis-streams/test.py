@@ -1,6 +1,12 @@
 import json
 import base64
-from solution import build_put_record_params, parse_kinesis_event, calculate_shards
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_put_record_params = _mod.build_put_record_params
+parse_kinesis_event = _mod.parse_kinesis_event
+calculate_shards = _mod.calculate_shards
 
 def test_put_record():
     result = build_put_record_params('my-stream', {'event': 'click'}, 'user-123')

@@ -1,6 +1,6 @@
 # CI/CD on AWS
 
-> **Domain 3: Deployment** | [← SAM](02-sam.md) | [Back to Index](../../README.md) | [Next: Elastic Beanstalk →](04-elastic-beanstalk.md)
+> **Domain 3: Deployment** | [← SAM](dep-02-sam.md) | [Back to Index](../README.md) | [Next: Elastic Beanstalk →](dep-04-elastic-beanstalk.md)
 
 ---
 
@@ -177,4 +177,17 @@ Hooks:
 
 ---
 
-[← SAM](02-sam.md) | [Back to Index](../../README.md) | [Next: Elastic Beanstalk →](04-elastic-beanstalk.md)
+## Practice
+
+Related exercises:
+
+- [24-cicd-pipeline](../exercises/24-cicd-pipeline/) — CodeBuild, CodePipeline, CodeDeploy
+- [35-deploy-pipeline](../exercises/35-deploy-pipeline/) — end-to-end deploy design
+
+```bash
+python runner.py exercises/24-cicd-pipeline
+```
+
+---
+
+[← SAM](dep-02-sam.md) | [Back to Index](../README.md) | [Next: Elastic Beanstalk →](dep-04-elastic-beanstalk.md)

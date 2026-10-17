@@ -1,4 +1,10 @@
-from solution import build_sam_function, build_api_event, build_sam_template
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_sam_function = _mod.build_sam_function
+build_api_event = _mod.build_api_event
+build_sam_template = _mod.build_sam_template
 
 def test_sam_function():
     func = build_sam_function('GetItems', 'python3.11', 'app.handler', 'src/')

@@ -40,7 +40,6 @@ cache = SimpleCache()
 
 def get_user_with_cache(user_id):
     """Lazy loading pattern: check cache first, then DB."""
-    # Fix: Check cache first
     cached = cache.get(f'user:{user_id}')
     if cached:
         return cached
@@ -53,7 +52,6 @@ def get_user_with_cache(user_id):
 
 def save_user_with_cache(user_id, data):
     """Write-through pattern: update both cache and DB."""
-    # Fix: Write to both cache and DB
     mock_db_set(user_id, data)
     cache.set(f'user:{user_id}', data, ttl_seconds=3600)
     return data

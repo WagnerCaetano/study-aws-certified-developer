@@ -6,11 +6,11 @@
 
 | Exam | Questions | Topics |
 |------|-----------|--------|
-| [Exam 1](exam-01.md) | 65 | Deployment: 15, Development: 18, Monitoring: 16, Security: 16 |
-| [Exam 2](exam-02.md) | 65 | Deployment: 15, Development: 17, Monitoring: 16, Security: 17 |
-| [Exam 3](exam-03.md) | 65 | Deployment: 16, Development: 18, Monitoring: 15, Security: 16 |
-| [Exam 4](exam-04.md) | 65 | Deployment: 16, Development: 19, Monitoring: 14, Security: 16 |
-| [Exam 5](exam-05.md) | 65 | Deployment: 17, Development: 18, Monitoring: 14, Security: 16 |
+| [Exam 1](exam-01.md) | 65 | Deployment: 16, Development: 21, Monitoring: 11, Security: 17 |
+| [Exam 2](exam-02.md) | 65 | Deployment: 16, Development: 21, Monitoring: 11, Security: 17 |
+| [Exam 3](exam-03.md) | 65 | Deployment: 16, Development: 21, Monitoring: 11, Security: 17 |
+| [Exam 4](exam-04.md) | 65 | Deployment: 16, Development: 21, Monitoring: 11, Security: 17 |
+| [Exam 5](exam-05.md) | 65 | Deployment: 16, Development: 21, Monitoring: 11, Security: 17 |
 
 ## How to Use
 
@@ -37,5 +37,5 @@
 
 ## Study Resources
 
-- [Study Guide →](../docs/README.md)
-- [Hands-on Exercises →](../exercises/README.md)
+- [Study Guide →](../README.md)
+- [Hands-on Exercises →](../exercises/)

@@ -1,46 +1,56 @@
+"""S3 helpers for LocalStack (upload, download, list, presign) + event parsing."""
+
+from __future__ import annotations
+
 import json
+from typing import Any, Dict, List, Union
 
-def build_put_object_params(bucket, key, data, content_type='application/json'):
-    """Build parameters for S3 put_object."""
+
+def upload_json(client, bucket: str, key: str, data: Union[dict, str], content_type: str = "application/json") -> None:
+    """Put an object; JSON-serialize dict bodies."""
     body = json.dumps(data) if isinstance(data, dict) else data
-    return {
-        'Bucket': bucket,
-        'Key': key,
-        'Body': body,
-        'ContentType': content_type
-    }
+    client.put_object(
+        Bucket=bucket,
+        Key=key,
+        Body=body,
+        ContentType=content_type,
+    )
 
-def build_presigned_url_params(bucket, key, expiration=3600):
-    """Build parameters for generating a presigned URL."""
-    return {
-        'Bucket': bucket,
-        'Key': key,
-        'ExpiresIn': expiration  # Fix: Should be a reasonable duration
-    }
 
-def parse_s3_event(event):
-    """Parse an S3 event notification."""
-    # Fix: Handle proper S3 event structure
-    records = event.get('Records', [])
-    if not records:
-        return []
-    
-    results = []
-    for record in records:
-        s3 = record.get('s3', {})
-        bucket = s3.get('bucket', {}).get('name')
-        key = s3.get('object', {}).get('key')
-        event_name = record.get('eventName', '')
-        results.append({
-            'bucket': bucket,
-            'key': key,
-            'event': event_name
-        })
-    return results
+def download_text(client, bucket: str, key: str) -> str:
+    """Get object body as UTF-8 text."""
+    resp = client.get_object(Bucket=bucket, Key=key)
+    return resp["Body"].read().decode("utf-8")
 
-def build_list_objects_params(bucket, prefix=''):
-    """Build parameters for listing S3 objects."""
-    params = {'Bucket': bucket}
+
+def list_keys(client, bucket: str, prefix: str = "") -> List[str]:
+    """Return object keys under ``prefix`` (empty prefix = whole bucket)."""
+    params: Dict[str, Any] = {"Bucket": bucket}
     if prefix:
-        params['Prefix'] = prefix
-    return params
+        params["Prefix"] = prefix
+    resp = client.list_objects_v2(**params)
+    return [obj["Key"] for obj in resp.get("Contents", [])]
+
+
+def generate_presigned_get(client, bucket: str, key: str, expires_in: int = 3600) -> str:
+    """Return a presigned GET URL string."""
+    return client.generate_presigned_url(
+        "get_object",
+        Params={"Bucket": bucket, "Key": key},
+        ExpiresIn=expires_in,
+    )
+
+
+def parse_s3_event(event: dict) -> List[dict]:
+    """Parse S3 event notification records (exam-style Lambda trigger)."""
+    results = []
+    for record in event.get("Records", []):
+        s3 = record.get("s3", {})
+        results.append(
+            {
+                "bucket": s3.get("bucket", {}).get("name"),
+                "key": s3.get("object", {}).get("key"),
+                "event": record.get("eventName", ""),
+            }
+        )
+    return results

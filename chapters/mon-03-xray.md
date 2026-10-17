@@ -1,6 +1,6 @@
 # AWS X-Ray
 
-> **Domain 4: Monitoring & Troubleshooting** | [← CloudTrail](02-cloudtrail.md) | [Back to Index](../../README.md) | [Next: Troubleshooting →](04-troubleshooting.md)
+> **Domain 4: Monitoring & Troubleshooting** | [← CloudTrail](mon-02-cloudtrail.md) | [Back to Index](../README.md) | [Next: Troubleshooting →](mon-04-troubleshooting.md)
 
 ---
 
@@ -143,4 +143,16 @@ def lambda_handler(event, context):
 
 ---
 
-[← CloudTrail](02-cloudtrail.md) | [Back to Index](../../README.md) | [Next: Troubleshooting →](04-troubleshooting.md)
+## Practice
+
+Related exercises:
+
+- [29-xray-tracing](../exercises/29-xray-tracing/) — segments, annotations, sampling
+
+```bash
+python runner.py exercises/29-xray-tracing
+```
+
+---
+
+[← CloudTrail](mon-02-cloudtrail.md) | [Back to Index](../README.md) | [Next: Troubleshooting →](mon-04-troubleshooting.md)

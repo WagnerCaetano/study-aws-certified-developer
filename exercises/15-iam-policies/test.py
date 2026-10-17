@@ -1,5 +1,12 @@
 import json
-from solution import build_lambda_s3_policy, build_lambda_dynamodb_policy, check_least_privilege, build_cross_account_role_trust
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_lambda_s3_policy = _mod.build_lambda_s3_policy
+build_lambda_dynamodb_policy = _mod.build_lambda_dynamodb_policy
+check_least_privilege = _mod.check_least_privilege
+build_cross_account_role_trust = _mod.build_cross_account_role_trust
 
 def test_s3_policy_least_privilege():
     policy = build_lambda_s3_policy('my-bucket')

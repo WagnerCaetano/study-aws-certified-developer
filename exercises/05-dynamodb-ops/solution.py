@@ -1,53 +1,51 @@
-import json
+"""DynamoDB CRUD helpers against a LocalStack Table resource."""
 
-def build_put_item(table_name, item):
-    """Build a DynamoDB put_item parameters."""
-    return {
-        'TableName': table_name,
-        'Item': item,
-        'ConditionExpression': 'attribute_not_exists(pk)'
-    }
+from boto3.dynamodb.conditions import Key
 
-def build_get_item(table_name, key):
-    """Build a DynamoDB get_item parameters."""
-    # Fix: Key must be a dict with key attribute name and value
-    return {
-        'TableName': table_name,
-        'Key': key
-    }
 
-def build_query(table_name, partition_key_name, partition_key_value):
-    """Build a DynamoDB query parameters."""
-    # Fix: Use KeyConditionExpression with proper placeholder
-    return {
-        'TableName': table_name,
-        'KeyConditionExpression': f'{partition_key_name} = :pkval',
-        'ExpressionAttributeValues': {
-            ':pkval': partition_key_value
-        }
-    }
+def put_item(table, item):
+    """Put an item; fail if pk already exists."""
+    table.put_item(
+        Item=item,
+        ConditionExpression="attribute_not_exists(pk)",
+    )
 
-def build_update_item(table_name, key, updates):
-    """Build a DynamoDB update_item parameters."""
-    # Fix: Build UpdateExpression and ExpressionAttributeValues
+
+def get_item(table, key):
+    """Return the item for ``key``, or None if missing."""
+    resp = table.get_item(Key=key)
+    return resp.get("Item")
+
+
+def query_by_pk(table, pk_name, pk_value):
+    """Query all items with the given partition key."""
+    resp = table.query(KeyConditionExpression=Key(pk_name).eq(pk_value))
+    return resp.get("Items", [])
+
+
+def update_item(table, key, updates):
+    """SET each attribute in ``updates`` on the item identified by ``key``."""
     set_parts = []
-    attr_values = {}
+    values = {}
+    names = {}
     for i, (attr, value) in enumerate(updates.items()):
-        placeholder = f':val{i}'
-        set_parts.append(f'{attr} = {placeholder}')
-        attr_values[placeholder] = value
-    
-    return {
-        'TableName': table_name,
-        'Key': key,
-        'UpdateExpression': 'SET ' + ', '.join(set_parts),
-        'ExpressionAttributeValues': attr_values
-    }
+        name_key = f"#a{i}"
+        val_key = f":v{i}"
+        names[name_key] = attr
+        values[val_key] = value
+        set_parts.append(f"{name_key} = {val_key}")
 
-def build_delete_item(table_name, key):
-    """Build a DynamoDB delete_item parameters."""
-    return {
-        'TableName': table_name,
-        'Key': key,
-        'ConditionExpression': 'attribute_exists(pk)'
-    }
+    table.update_item(
+        Key=key,
+        UpdateExpression="SET " + ", ".join(set_parts),
+        ExpressionAttributeNames=names,
+        ExpressionAttributeValues=values,
+    )
+
+
+def delete_item(table, key):
+    """Delete the item; fail if pk does not exist."""
+    table.delete_item(
+        Key=key,
+        ConditionExpression="attribute_exists(pk)",
+    )

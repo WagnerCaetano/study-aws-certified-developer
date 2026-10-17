@@ -1,6 +1,6 @@
 # Amazon DynamoDB
 
-> **Domain 1: Development with AWS Services** | [← API Gateway](03-api-gateway.md) | [Back to Index](../../README.md) | [Next: S3 →](05-s3.md)
+> **Domain 1: Development with AWS Services** | [← API Gateway](dev-03-api-gateway.md) | [Back to Index](../README.md) | [Next: S3 →](dev-05-s3.md)
 
 ---
 
@@ -483,4 +483,24 @@ response = table.get_item(
 
 ---
 
-[← API Gateway](03-api-gateway.md) | [Back to Index](../../README.md) | [Next: S3 →](05-s3.md)
+## Practice
+
+Related exercises:
+
+- [05-dynamodb-ops](../exercises/05-dynamodb-ops/) — Put/Get/Query/Update
+- [06-dynamodb-design](../exercises/06-dynamodb-design/) — keys, GSIs, access patterns
+- [31-serverless-api](../exercises/31-serverless-api/) — offline concept check
+
+Multi-service lab (when available):
+
+- [labs/01-serverless-api](../labs/01-serverless-api/) — API Gateway + Lambda + DynamoDB
+
+Also see: [references/dynamodb-cheatsheet.md](../references/dynamodb-cheatsheet.md)
+
+```bash
+python runner.py exercises/05-dynamodb-ops
+```
+
+---
+
+[← API Gateway](dev-03-api-gateway.md) | [Back to Index](../README.md) | [Next: S3 →](dev-05-s3.md)

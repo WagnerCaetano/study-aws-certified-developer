@@ -1,4 +1,9 @@
-from solution import build_lambda_cfn_template, build_s3_cfn_template
+import os
+import importlib
+
+_mod = importlib.import_module(os.environ.get('EXERCISE_MODULE', 'starter'))
+build_lambda_cfn_template = _mod.build_lambda_cfn_template
+build_s3_cfn_template = _mod.build_s3_cfn_template
 
 def test_lambda_template():
     template = build_lambda_cfn_template('MyFunction', 'python3.11', 'index.handler', 'my-bucket/code.zip', 'role-arn')

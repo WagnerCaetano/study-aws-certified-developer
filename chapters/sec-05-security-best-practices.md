@@ -1,6 +1,6 @@
 # Security Best Practices
 
-> **Domain 2: Security** | [← Secrets](04-secrets.md) | [Back to Index](../../README.md) | [Next: CloudFormation →](../03-deployment/01-cloudformation.md)
+> **Domain 2: Security** | [← Secrets](sec-04-secrets.md) | [Back to Index](../README.md) | [Next: CloudFormation →](dep-01-cloudformation.md)
 
 ---
 
@@ -86,4 +86,20 @@
 
 ---
 
-[← Secrets](04-secrets.md) | [Back to Index](../../README.md) | [Next: CloudFormation →](../03-deployment/01-cloudformation.md)
+## Practice
+
+Related exercises:
+
+- [20-security-review](../exercises/20-security-review/) — least privilege and common pitfalls
+
+Multi-service lab (when available):
+
+- [labs/04-secure-config](../labs/04-secure-config/) — secure config end-to-end
+
+```bash
+python runner.py exercises/20-security-review
+```
+
+---
+
+[← Secrets](sec-04-secrets.md) | [Back to Index](../README.md) | [Next: CloudFormation →](dep-01-cloudformation.md)

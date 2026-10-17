@@ -4,7 +4,8 @@
 import os
 from pathlib import Path
 
-EXERCISES_DIR = Path(__file__).parent / 'exercises'
+# Write into repo-root exercises/ (not generators/exercises)
+EXERCISES_DIR = Path(__file__).resolve().parent.parent / 'exercises'
 
 # ============================================================
 # Exercise definitions: (name, readme, solution, test)
@@ -2957,22 +2958,30 @@ def test_diagnose_deploy_failure():
 # ============================================================
 
 def generate_all():
-    print("Generating exercises...")
+    """Emit exercise folders under repo-root exercises/.
+
+    Prefer editing exercise files directly for pedagogy (starter vs solution).
+    When regenerating, each folder should end up with:
+      - starter.py  (broken / incomplete — student edits this)
+      - solution.py (correct answer key)
+      - test.py     (imports via EXERCISE_MODULE=starter|solution)
+      - README.md
+    This generator currently writes solution.py + test.py from the EXERCISES
+    definitions; add a 'starter' key per exercise when regenerating from scratch.
+    """
+    print(f"Generating exercises into {EXERCISES_DIR}...")
     for ex in EXERCISES:
         dir_path = EXERCISES_DIR / ex['dir']
         dir_path.mkdir(parents=True, exist_ok=True)
-        
-        # Write README
-        (dir_path / 'README.md').write_text(ex['readme'])
-        
-        # Write solution
-        (dir_path / 'solution.py').write_text(ex['solution'])
-        
-        # Write test
-        (dir_path / 'test.py').write_text(ex['test'])
-        
+
+        (dir_path / 'README.md').write_text(ex['readme'], encoding='utf-8')
+        (dir_path / 'solution.py').write_text(ex['solution'], encoding='utf-8')
+        (dir_path / 'test.py').write_text(ex['test'], encoding='utf-8')
+        if 'starter' in ex:
+            (dir_path / 'starter.py').write_text(ex['starter'], encoding='utf-8')
+
         print(f"  Created: {ex['dir']}")
-    
+
     print(f"\nDone! Generated {len(EXERCISES)} exercises.")
 
 if __name__ == '__main__':

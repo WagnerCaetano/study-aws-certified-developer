@@ -1,0 +1,17 @@
+services:
+  localstack:
+    # Pin pre-2026.3 community image: newer :latest requires LOCALSTACK_AUTH_TOKEN
+    image: localstack/localstack:4.4
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=lambda,dynamodb,s3,sqs,sns,apigateway,iam,sts,kms,secretsmanager,ssm,stepfunctions,logs,events
+      - DEBUG=0
+      - PERSISTENCE=0
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+volumes:
+  localstack-data:
